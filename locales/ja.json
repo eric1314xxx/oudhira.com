@@ -1,0 +1,200 @@
+{
+    "lang": "ja",
+    "langName": "日本語",
+    "dir": "ltr",
+    "meta": {
+        "title": "OUDHIRA - プレミアム沈香電子タバコ",
+        "description": "本物の沈香（ウード）の香りを吹き込んだ、世界初のラグジュアリー電子タバコで究極の贅沢を体験してください。"
+    },
+    "nav": {
+        "home": "ホーム",
+        "heritage": "ヘリテージ",
+        "video": "ショーケース",
+        "products": "製品",
+        "experience": "体験",
+        "contact": "お問い合わせ"
+    },
+    "hero": {
+        "badge": "ラグジュアリー体験",
+        "title1": "沈香の",
+        "title2": "真髄",
+        "subtitle": "本物の沈香の香りを吹き込んだ、初の電子タバコで究極の贅沢を。伝統と革新の融合。",
+        "cta1": "コレクションを見る",
+        "cta2": "体験動画を視聴",
+        "scroll": "スクロール"
+    },
+    "heritage": {
+        "tag": "私たちの遺産",
+        "title": "沈香のレガシー",
+        "lead": "数千年にわたり、沈香は中東において富と洗練の象徴でした。",
+        "text": "伝統的な沈香の真正性と最新の電子気化技術を組み合わせ、一吸いごとに格別な香りのひとときをお届けする、ユニークな体験をご提供します。",
+        "stats": {
+            "natural": {
+                "number": "100%",
+                "label": "天然沈香"
+            },
+            "gold": {
+                "number": "24K",
+                "label": "ゴールドディテール"
+            },
+            "experience": {
+                "number": "∞",
+                "label": "忘れられない体験"
+            }
+        }
+    },
+    "products": {
+        "tag": "限定コレクション",
+        "title": "OUDHIRA コレクション",
+        "orderNow": "今すぐ注文",
+        "puffs": "パフ",
+        "items": [
+            {
+                "id": 1,
+                "name": "ロイヤル・ウード",
+                "description": "ホワイトムスクを添えたプレミアム・カンボジア沈香",
+                "puffs": 500,
+                "battery": "650mAh",
+                "price": 899,
+                "currency": "AED",
+                "badge": "ベストセラー",
+                "type": "royal"
+            },
+            {
+                "id": 2,
+                "name": "スルタン・ウード",
+                "description": "インド沈香、アンバー、サフランの独占ブレンド",
+                "puffs": 800,
+                "battery": "850mAh",
+                "price": 1499,
+                "currency": "AED",
+                "badge": "限定版",
+                "featured": true,
+                "type": "premium"
+            },
+            {
+                "id": 3,
+                "name": "ナイト・ウード",
+                "description": "タイフローズを添えた神秘的なインドネシア沈香",
+                "puffs": 600,
+                "battery": "750mAh",
+                "price": 1099,
+                "currency": "AED",
+                "badge": "新着",
+                "type": "elegant"
+            }
+        ]
+    },
+    "videoShowcase": {
+        "tag": "ブランドショーケース",
+        "title": "OUDHIRA：視覚的な旅",
+        "description": "一吸いごとに伝統と現代の卓越性が融合する、OUDHIRAの贅沢な世界に浸ってください。"
+    },
+    "experience": {
+        "tag": "体験",
+        "title": "五感の旅",
+        "videoLabel": "体験を視聴",
+        "features": [
+            {
+                "icon": "gem",
+                "title": "贅沢なデザイン",
+                "description": "本物のアラビア彫刻が施された24金メッキのボディ"
+            },
+            {
+                "icon": "leaf",
+                "title": "100% 天然沈香",
+                "description": "東南アジアの森林から採取された最高級の沈香木から抽出"
+            },
+            {
+                "icon": "microchip",
+                "title": "最先端技術",
+                "description": "香りの純度を保つためのセラミック加熱システム"
+            },
+            {
+                "icon": "shield-alt",
+                "title": "品質保証",
+                "description": "24時間365日のカスタマーサービスと2年間の保証"
+            }
+        ]
+    },
+    "testimonials": {
+        "tag": "お客様の声",
+        "title": "クライアントからの評価",
+        "items": [
+            {
+                "text": "格別な体験です！一吸いごとに本物の沈香の香りが広がります。これは単なる製品ではなく、ライフスタイルそのものです。",
+                "author": "モハメド・アル＝アフマド",
+                "initials": "MA",
+                "location": "ドバイ、UAE"
+            },
+            {
+                "text": "デザインが非常に洗練されており、品質も高いです。毎日の集まりに欠かせないものになりました。強くお勧めします。",
+                "author": "ハリド・アル＝サイード",
+                "initials": "KS",
+                "location": "リヤド、サウジアラビア"
+            },
+            {
+                "text": "沈香愛好家への完璧な贈り物。パッケージも豪華で、製品は期待を上回ります。",
+                "author": "ファティマ・アル＝アリ",
+                "initials": "FA",
+                "location": "ドーハ、カタール"
+            }
+        ]
+    },
+    "contact": {
+        "tag": "お問い合わせ",
+        "title": "ファミリーの一員に",
+        "description": "ご質問や特別注文など、お気軽にお問い合わせください。",
+        "email": "info@oudhira.com",
+        "phone": "+971 4 123 4567",
+        "address": "ドバイ、アラブ首長国連邦",
+        "form": {
+            "name": "お名前",
+            "email": "メールアドレス",
+            "phone": "電話番号",
+            "message": "メッセージ",
+            "submit": "メッセージを送信",
+            "success": "お問い合わせありがとうございます！まもなくご連絡いたします。"
+        }
+    },
+    "footer": {
+        "tagline": "一吸いごとに贅沢を",
+        "quickLinks": {
+            "title": "クイックリンク",
+            "home": "ホーム",
+            "heritage": "ヘリテージ",
+            "products": "製品",
+            "experience": "体験"
+        },
+        "customerService": {
+            "title": "カスタマーサービス",
+            "faq": "よくある質問",
+            "returns": "返品ポリシー",
+            "shipping": "配送について",
+            "tracking": "注文追跡"
+        },
+        "shop": {
+            "title": "ショップ",
+            "collection": "フルコレクション",
+            "limited": "限定版",
+            "accessories": "アクセサリ",
+            "giftCards": "ギフトカード"
+        },
+        "newsletter": {
+            "title": "ニュースレター購読",
+            "description": "最新のオファーや新製品情報を入手",
+            "placeholder": "メールアドレス",
+            "success": "購読が完了しました！"
+        },
+        "copyright": "© 2026 OUDHIRA. All rights reserved",
+        "legal": {
+            "privacy": "プライバシーポリシー",
+            "terms": "利用規約"
+        }
+    },
+    "common": {
+        "loading": "読み込み中...",
+        "error": "エラーが発生しました",
+        "close": "閉じる"
+    }
+}

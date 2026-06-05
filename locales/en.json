@@ -1,0 +1,200 @@
+{
+    "lang": "en",
+    "langName": "English",
+    "dir": "ltr",
+    "meta": {
+        "title": "OUDHIRA - Premium Agarwood Vape",
+        "description": "Discover the ultimate luxury with the first electronic cigarette infused with authentic Oud fragrance"
+    },
+    "nav": {
+        "home": "Home",
+        "heritage": "Heritage",
+        "video": "Showcase",
+        "products": "Products",
+        "experience": "Experience",
+        "contact": "Contact"
+    },
+    "hero": {
+        "badge": "Luxury Experience",
+        "title1": "The Essence",
+        "title2": "of Oud",
+        "subtitle": "Discover the ultimate luxury with the first electronic cigarette infused with authentic Oud fragrance",
+        "cta1": "Explore Collection",
+        "cta2": "Watch Experience",
+        "scroll": "Scroll Down"
+    },
+    "heritage": {
+        "tag": "Our Heritage",
+        "title": "The Legacy of Oud",
+        "lead": "For thousands of years, Oud has been a symbol of luxury and sophistication in the Middle East",
+        "text": "We bring you a unique experience that combines the authenticity of traditional Oud with the latest electronic vaporization technology, delivering exceptional aromatic moments with every breath",
+        "stats": {
+            "natural": {
+                "number": "100%",
+                "label": "Natural Oud"
+            },
+            "gold": {
+                "number": "24K",
+                "label": "Gold Details"
+            },
+            "experience": {
+                "number": "∞",
+                "label": "Unforgettable Experience"
+            }
+        }
+    },
+    "products": {
+        "tag": "Exclusive Collection",
+        "title": "OUDHIRA Collection",
+        "orderNow": "Order Now",
+        "puffs": "puffs",
+        "items": [
+            {
+                "id": 1,
+                "name": "Royal Oud",
+                "description": "Premium Cambodian Oud with touches of white musk",
+                "puffs": 500,
+                "battery": "650mAh",
+                "price": 899,
+                "currency": "AED",
+                "badge": "Best Seller",
+                "type": "royal"
+            },
+            {
+                "id": 2,
+                "name": "Sultan's Oud",
+                "description": "Exclusive blend of Indian Oud, Amber and Saffron",
+                "puffs": 800,
+                "battery": "850mAh",
+                "price": 1499,
+                "currency": "AED",
+                "badge": "Limited Edition",
+                "featured": true,
+                "type": "premium"
+            },
+            {
+                "id": 3,
+                "name": "Night Oud",
+                "description": "Mysterious Indonesian Oud with Taif Rose",
+                "puffs": 600,
+                "battery": "750mAh",
+                "price": 1099,
+                "currency": "AED",
+                "badge": "New",
+                "type": "elegant"
+            }
+        ]
+    },
+    "videoShowcase": {
+        "tag": "Brand Showcase",
+        "title": "OUDHIRA: A Visual Journey",
+        "description": "Immerse yourself in the luxury of OUDHIRA, where tradition meets modern excellence in every puff."
+    },
+    "experience": {
+        "tag": "The Experience",
+        "title": "Journey of the Senses",
+        "videoLabel": "Watch Experience",
+        "features": [
+            {
+                "icon": "gem",
+                "title": "Luxurious Design",
+                "description": "24-karat gold-plated body with authentic Arabic engravings"
+            },
+            {
+                "icon": "leaf",
+                "title": "100% Natural Oud",
+                "description": "Extracted from the finest Oud wood from Southeast Asian forests"
+            },
+            {
+                "icon": "microchip",
+                "title": "Advanced Technology",
+                "description": "Ceramic heating system to preserve scent purity"
+            },
+            {
+                "icon": "shield-alt",
+                "title": "Quality Guarantee",
+                "description": "Two-year warranty with 24/7 customer service"
+            }
+        ]
+    },
+    "testimonials": {
+        "tag": "Customer Reviews",
+        "title": "What Our Clients Say",
+        "items": [
+            {
+                "text": "An exceptional experience! The authentic Oud fragrance emanates with every puff. This is not just a product, it's a lifestyle.",
+                "author": "Mohammed Al-Ahmad",
+                "initials": "MA",
+                "location": "Dubai, UAE"
+            },
+            {
+                "text": "The design is very elegant and the quality is high. It has become part of my daily gatherings. I highly recommend it.",
+                "author": "Khalid Al-Saeed",
+                "initials": "KS",
+                "location": "Riyadh, Saudi Arabia"
+            },
+            {
+                "text": "A perfect gift for Oud lovers. The packaging is luxurious and the product exceeds expectations.",
+                "author": "Fatima Al-Ali",
+                "initials": "FA",
+                "location": "Doha, Qatar"
+            }
+        ]
+    },
+    "contact": {
+        "tag": "Contact Us",
+        "title": "Be Part of the Family",
+        "description": "We are delighted to hear from you for inquiries or special orders",
+        "email": "info@oudhira.com",
+        "phone": "+971 4 123 4567",
+        "address": "Dubai, United Arab Emirates",
+        "form": {
+            "name": "Your Name",
+            "email": "Email Address",
+            "phone": "Phone Number",
+            "message": "Your Message",
+            "submit": "Send Message",
+            "success": "Thank you for contacting us! We will get back to you soon."
+        }
+    },
+    "footer": {
+        "tagline": "Luxury in Every Breath",
+        "quickLinks": {
+            "title": "Quick Links",
+            "home": "Home",
+            "heritage": "Heritage",
+            "products": "Products",
+            "experience": "Experience"
+        },
+        "customerService": {
+            "title": "Customer Service",
+            "faq": "FAQ",
+            "returns": "Return Policy",
+            "shipping": "Shipping & Delivery",
+            "tracking": "Order Tracking"
+        },
+        "shop": {
+            "title": "Shop",
+            "collection": "Full Collection",
+            "limited": "Limited Editions",
+            "accessories": "Accessories",
+            "giftCards": "Gift Cards"
+        },
+        "newsletter": {
+            "title": "Subscribe to Newsletter",
+            "description": "Get the latest offers and new products",
+            "placeholder": "Email Address",
+            "success": "Subscription successful!"
+        },
+        "copyright": "© 2026 OUDHIRA. All rights reserved",
+        "legal": {
+            "privacy": "Privacy Policy",
+            "terms": "Terms & Conditions"
+        }
+    },
+    "common": {
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "close": "Close"
+    }
+}
