@@ -1,0 +1,7 @@
+{
+  "admin": {
+    "username": "admin",
+    "password": "OudGold2025!"
+  },
+  "sessionSecret": "oud-gold-secret-key-change-me-in-production"
+}

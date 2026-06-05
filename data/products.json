@@ -1,0 +1,85 @@
+{
+  "products": [
+    {
+      "id": "royal-oud",
+      "name": {
+        "ar": "عود ملكي",
+        "en": "Royal Oud",
+        "zh": "皇家沉香"
+      },
+      "description": {
+        "ar": "عود كمبودي فاخر مع لمسات من المسك الأبيض",
+        "en": "Premium Cambodian Oud with touches of white musk",
+        "zh": "顶级柬埔寨沉香，搭配白麝香调"
+      },
+      "puffs": 500,
+      "battery": "650mAh",
+      "price": 899,
+      "currency": "AED",
+      "badge": {
+        "ar": "الأكثر مبيعاً",
+        "en": "Best Seller",
+        "zh": "热销款"
+      },
+      "featured": false,
+      "type": "royal",
+      "image": "royal-oud.png",
+      "active": true,
+      "order": 1
+    },
+    {
+      "id": "sultans-oud",
+      "name": {
+        "ar": "عود السلطان",
+        "en": "Sultan's Oud",
+        "zh": "苏丹沉香"
+      },
+      "description": {
+        "ar": "مزيج حصري من العود الهندي والعنبر والزعفران",
+        "en": "Exclusive blend of Indian Oud, Amber and Saffron",
+        "zh": "印度沉香、琥珀与藏红花的独家调配"
+      },
+      "puffs": 800,
+      "battery": "850mAh",
+      "price": 1499,
+      "currency": "AED",
+      "badge": {
+        "ar": "إصدار محدود",
+        "en": "Limited Edition",
+        "zh": "限量版"
+      },
+      "featured": true,
+      "type": "premium",
+      "image": "sultans-oud.png",
+      "active": true,
+      "order": 2
+    },
+    {
+      "id": "night-oud",
+      "name": {
+        "ar": "عود الليل",
+        "en": "Night Oud",
+        "zh": "夜沉香"
+      },
+      "description": {
+        "ar": "عود إندونيسي غامض مع ورد الطائف",
+        "en": "Mysterious Indonesian Oud with Taif Rose",
+        "zh": "神秘的印尼沉香，配以塔伊夫玫瑰"
+      },
+      "puffs": 600,
+      "battery": "750mAh",
+      "price": 1099,
+      "currency": "AED",
+      "badge": {
+        "ar": "جديد",
+        "en": "New",
+        "zh": "新品"
+      },
+      "featured": false,
+      "type": "elegant",
+      "image": "night-oud.png",
+      "active": true,
+      "order": 3
+    }
+  ]
+}
