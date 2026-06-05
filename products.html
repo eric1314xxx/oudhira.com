@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | OUDHIRA - Premium Agarwood Vape</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .products { padding-top: 150px; min-height: 80vh; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+        .product-card { background: var(--black-medium); border: 1px solid rgba(212, 175, 55, 0.1); border-radius: 20px; padding: 40px; transition: var(--transition); position: relative; overflow: hidden; }
+        .product-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+        .card-badge { position: absolute; top: 20px; right: 20px; background: var(--gold); color: var(--black); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+        .product-name { font-size: 1.8rem; margin-bottom: 15px; color: var(--gold); }
+        .product-desc { color: var(--gray); margin-bottom: 25px; font-size: 0.95rem; }
+        .product-features { display: flex; gap: 20px; margin-bottom: 30px; color: var(--white); font-size: 0.9rem; }
+        .product-features i { color: var(--gold); }
+        .product-price { display: flex; align-items: baseline; gap: 5px; }
+        .currency { font-size: 1rem; color: var(--gold); }
+        .amount { font-size: 2rem; font-weight: 700; color: var(--white); }
+    </style>
+</head>
+<body>
+    <!-- 强制颜色修复 SVG 滤镜 - 绝对锁定 #e3ccae -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="iphone-gold-fix">
+                <feColorMatrix type="matrix" values="0 0 0 0 0.89  0 0 0 0 0.80  0 0 0 0 0.68  0 0 0 1 0" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="public/images/logo.png" alt="OUDHIRA LOGO" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-content-right">
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
+                    <a href="heritage.html" class="nav-link" data-i18n="nav_heritage">Brand Story</a>
+                    <div class="nav-link-wrapper">
+                        <a href="products.html" class="nav-link active" data-i18n="nav_products">Products <i class="fas fa-chevron-down"></i></a>
+                        <div class="nav-dropdown">
+                            <a href="product-master.html" class="dropdown-item" data-i18n="tab_master">THE MASTER</a>
+                            <a href="product-aura.html" class="dropdown-item" data-i18n="tab_aura">AURA</a>
+                        </div>
+                    </div>
+                    <a href="experience.html" class="nav-link" data-i18n="nav_experience">Experience</a>
+                    <a href="index.html#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
+                    <a href="#" class="nav-icon"><i class="fas fa-search"></i></a>
+                    <a href="#" class="nav-icon shopping-cart">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="lang-switcher">
+                        <button class="nav-icon lang-btn" id="langSwitch">
+                            <i class="fas fa-globe"></i>
+                        </button>
+                        <div class="lang-menu">
+                            <a href="#" class="active" onclick="changeLanguage('en')">English</a>
+                            <a href="#" onclick="changeLanguage('ar')">العربية (Arabic)</a>
+                            <a href="#" onclick="changeLanguage('ja')">日本語 (Japanese)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="section-container">
+            <div class="section-header centered">
+                <span class="section-tag" data-i18n="products_tag">Exclusive Collection</span>
+                <h2 class="section-title" data-i18n="products_title">OUDHIRA Collection</h2>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="product-tabs">
+                <button class="tab-btn active" onclick="switchTab('master')" data-i18n="tab_master">THE MASTER</button>
+                <button class="tab-btn" onclick="switchTab('aura')" data-i18n="tab_aura">AURA</button>
+            </div>
+
+            <!-- THE MASTER Tab Content -->
+            <div id="master" class="tab-content active">
+                <div class="products-grid">
+                    <!-- Product 1: Royal Master -->
+                    <div class="product-card">
+                        <span class="product-tag" data-i18n="product_tag_signature">Signature</span>
+                        <div class="product-image-container">
+                            <div class="product-image-placeholder"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name" data-i18n="product_master_royal">Royal Master</h3>
+                            <p class="product-desc" data-i18n="product_master_royal_desc">The pinnacle of luxury. Pure Cambodian Oud aged for 20 years, delivering an unparalleled depth and complexity.</p>
+                            <div class="product-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_capacity">Capacity</span>
+                                    <span class="spec-value">2.0ml</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_puffs">Puffs</span>
+                                    <span class="spec-value">800+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency" data-i18n="currency">AED</span>
+                                <span class="amount">1,899</span>
+                            </div>
+                            <button class="buy-btn" data-i18n="btn_buy">Order Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 2: Imperial Master -->
+                    <div class="product-card">
+                        <span class="product-tag" data-i18n="product_tag_limited">Limited Edition</span>
+                        <div class="product-image-container">
+                            <div class="product-image-placeholder"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name" data-i18n="product_master_imperial">Imperial Master</h3>
+                            <p class="product-desc" data-i18n="product_master_imperial_desc">An exquisite blend of Indian Oud and rare Taif Rose, curated for the most discerning connoisseurs.</p>
+                            <div class="product-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_capacity">Capacity</span>
+                                    <span class="spec-value">2.0ml</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_puffs">Puffs</span>
+                                    <span class="spec-value">800+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency" data-i18n="currency">AED</span>
+                                <span class="amount">2,299</span>
+                            </div>
+                            <button class="buy-btn" data-i18n="btn_buy">Order Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 3: Midnight Master -->
+                    <div class="product-card">
+                        <span class="product-tag" data-i18n="product_tag_new">New Release</span>
+                        <div class="product-image-container">
+                            <div class="product-image-placeholder"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name" data-i18n="product_master_midnight">Midnight Master</h3>
+                            <p class="product-desc" data-i18n="product_master_midnight_desc">Deep Indonesian Oud infused with black amber, creating a mysterious and seductive evening experience.</p>
+                            <div class="product-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_capacity">Capacity</span>
+                                    <span class="spec-value">2.0ml</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_puffs">Puffs</span>
+                                    <span class="spec-value">800+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency" data-i18n="currency">AED</span>
+                                <span class="amount">1,699</span>
+                            </div>
+                            <button class="buy-btn" data-i18n="btn_buy">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AURA Tab Content -->
+            <div id="aura" class="tab-content">
+                <div class="products-grid">
+                    <!-- Product 1: Morning Aura -->
+                    <div class="product-card">
+                        <span class="product-tag" data-i18n="product_tag_fresh">Fresh</span>
+                        <div class="product-image-container">
+                            <div class="product-image-placeholder"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name" data-i18n="product_aura_morning">Morning Aura</h3>
+                            <p class="product-desc" data-i18n="product_aura_morning_desc">A lighter, refreshing take on Oud. Blended with white musk and citrus for a sophisticated daily ritual.</p>
+                            <div class="product-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_capacity">Capacity</span>
+                                    <span class="spec-value">1.5ml</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_puffs">Puffs</span>
+                                    <span class="spec-value">600+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency" data-i18n="currency">AED</span>
+                                <span class="amount">899</span>
+                            </div>
+                            <button class="buy-btn" data-i18n="btn_buy">Order Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 2: Velvet Aura -->
+                    <div class="product-card">
+                        <span class="product-tag" data-i18n="product_tag_popular">Popular</span>
+                        <div class="product-image-container">
+                            <div class="product-image-placeholder"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name" data-i18n="product_aura_velvet">Velvet Aura</h3>
+                            <p class="product-desc" data-i18n="product_aura_velvet_desc">Smooth and creamy. Saffron and vanilla meet premium Oud for a velvety, comforting scent profile.</p>
+                            <div class="product-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_capacity">Capacity</span>
+                                    <span class="spec-value">1.5ml</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_puffs">Puffs</span>
+                                    <span class="spec-value">600+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency" data-i18n="currency">AED</span>
+                                <span class="amount">999</span>
+                            </div>
+                            <button class="buy-btn" data-i18n="btn_buy">Order Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Product 3: Desert Aura -->
+                    <div class="product-card">
+                        <span class="product-tag" data-i18n="product_tag_oriental">Oriental</span>
+                        <div class="product-image-container">
+                            <div class="product-image-placeholder"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name" data-i18n="product_aura_desert">Desert Aura</h3>
+                            <p class="product-desc" data-i18n="product_aura_desert_desc">Inspired by the Arabian nights. A warm, spicy blend of sandalwood, spice, and authentic Oud.</p>
+                            <div class="product-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_capacity">Capacity</span>
+                                    <span class="spec-value">1.5ml</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_puffs">Puffs</span>
+                                    <span class="spec-value">600+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency" data-i18n="currency">AED</span>
+                                <span class="amount">1,099</span>
+                            </div>
+                            <button class="buy-btn" data-i18n="btn_buy">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function switchTab(tabId) {
+            // Remove active class from all buttons and contents
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Find the button and content to activate
+            const targetBtn = document.querySelector(`.tab-btn[onclick*="${tabId}"]`);
+            const targetContent = document.getElementById(tabId);
+            
+            if (targetBtn && targetContent) {
+                targetBtn.classList.add('active');
+                targetContent.classList.add('active');
+            }
+            
+            // Re-apply translations if needed
+            if (window.applyTranslations) {
+                window.applyTranslations();
+            }
+        }
+
+        // Handle tab parameter from URL
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tab = urlParams.get('tab');
+            if (tab === 'master' || tab === 'aura') {
+                switchTab(tab);
+            }
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="public/images/logo.png" alt="OUDHIRA LOGO" class="logo-img-footer">
+                    </div>
+                    <p data-i18n="footer_desc">Redefining luxury through the essence of authentic Oud.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer_links_title">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                        <li><a href="heritage.html" data-i18n="nav_heritage">Heritage</a></li>
+                        <li><a href="products.html" data-i18n="nav_products">Products</a></li>
+                        <li><a href="index.html#contact" data-i18n="nav_contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4 data-i18n="footer_follow_us">Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/oudhira_official/" target="_blank" title="Instagram Official"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/oudhira_official_jp/" target="_blank" title="Instagram Japan"><i class="fab fa-instagram"></i> <small style="font-size: 10px; position: absolute; margin-top: 15px; margin-left: -10px;">JP</small></a>
+                        <a href="https://www.facebook.com/profile.php?id=61587469697260" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://ca.pinterest.com/Oudhira/" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer_rights">&copy; 2026 OUDHIRA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <img src="public/images/Breathing.png" alt="Back to Top">
+    </div>
+
+    <script src="public/js/main.js"></script>
+    <script src="public/js/i18n.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

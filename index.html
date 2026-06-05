@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OUDHIRA - Premium Agarwood Vape</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 极致隔离样式：直接写在 HTML 头部，确保第一时间加载 */
+        body.age-restricted {
+            overflow: hidden !important;
+            height: 100vh !important;
+            margin: 0 !important;
+        }
+        #app-wrapper {
+            display: none !important;
+        }
+        .age-overlay {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: #000 !important; /* 后备背景色 */
+            z-index: 2147483647 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
+        }
+        .age-video-container {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 0 !important;
+        }
+        #age-bg-video {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            filter: brightness(0.5) !important; /* 调暗背景视频，突出文字 */
+        }
+        .age-content {
+            position: relative !important;
+            z-index: 1 !important;
+            background: transparent !important; /* 100% 透明度 */
+            backdrop-filter: none !important; /* 移除磨砂感 */
+            -webkit-backdrop-filter: none !important;
+            padding: 50px !important;
+            border: none !important; /* 移除边框 */
+            text-align: center !important;
+            color: #fff !important;
+            max-width: 600px !important;
+            width: 90% !important;
+            box-shadow: none !important; /* 移除阴影 */
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important; /* 强制子元素居中 */
+            justify-content: center !important;
+        }
+        
+        #age-verification .logo-img {
+            margin: 0 auto 20px auto !important; /* LOGO 居中并保持下间距 */
+            height: 60px !important; /* 稍微加大一点 LOGO 更有视觉重心 */
+        }
+        .btn-gold { 
+            background: #e3ccae !important; /* 严格使用用户要求的色号 */
+            color: #000 !important; 
+            padding: 12px 30px !important; 
+            border: none !important; 
+            cursor: pointer !important; 
+            font-weight: bold !important;
+            border-radius: 8px !important;
+        }
+        .btn-gray { 
+            background: rgba(255, 255, 255, 0.1) !important; 
+            color: #fff !important; 
+            padding: 12px 30px !important; 
+            border: 1px solid rgba(255, 255, 255, 0.2) !important; 
+            cursor: pointer !important; 
+            border-radius: 8px !important;
+        }
+    </style>
+
+    <!-- 强制颜色修复 SVG 滤镜 -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="iphone-gold-filter">
+                <feColorMatrix type="matrix" values="0 0 0 0 0.89  0 0 0 0 0.80  0 0 0 0 0.68  0 0 0 1 0" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- 强制颜色修复 SVG 滤镜 - 绝对锁定 #e3ccae -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="iphone-gold-fix">
+                <feColorMatrix type="matrix" values="0 0 0 0 0.89  0 0 0 0 0.80  0 0 0 0 0.68  0 0 0 1 0" />
+            </filter>
+        </defs>
+    </svg>
+
+    <style>
+        /* 1. 调整视频布局：恢复全屏覆盖，导航栏浮动在其上 */
+        .hero-video-container {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100vh !important;
+            z-index: 0 !important;
+            background: #000 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            overflow: hidden !important;
+        }
+        .hero-video-container video {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+        }
+
+        /* 导航栏背景在首页设为透明或半透明，提升视觉效果 */
+        .whatsapp-item {
+            align-items: flex-start !important;
+        }
+        
+        /* 返回顶部“会呼吸”的图标 */
+        .back-to-top {
+            position: fixed;
+            bottom: 60px; /* 从 30px 增加到 60px，向上移动 */
+            right: 60px;  /* 从 30px 增加到 60px，向左移动 */
+            width: 85px; 
+            height: 85px;
+            z-index: 9999;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* 使用 SVG 滤镜将图标颜色调整为与 Logo 一致的土豪金 */
+            filter: url(#iphone-gold-fix) drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+            -webkit-filter: url(#iphone-gold-fix) drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+            animation: breathe 2.5s ease-in-out infinite; /* 稍微加快一点频率，更有节奏感 */
+        }
+
+        @keyframes breathe {
+            0%, 100% {
+                transform: scale(0.95); /* 初始缩小一点，增加跳动对比度 */
+                filter: url(#iphone-gold-fix) drop-shadow(0 5px 15px rgba(227, 204, 174, 0.4));
+            }
+            50% {
+                transform: scale(1.3); /* 增大跳动幅度，从 1.15 增加到 1.3 */
+                filter: url(#iphone-gold-fix) drop-shadow(0 15px 35px rgba(227, 204, 174, 0.8)); /* 增强发光感 */
+            }
+        }
+
+        .back-to-top:hover img {
+            animation-play-state: paused;
+            transform: scale(1.4); /* 悬停时进一步放大 */
+            filter: url(#iphone-gold-fix) drop-shadow(0 15px 40px rgba(227, 204, 174, 1));
+        }
+
+        /* 响应式调整 */
+    </style>
+</head>
+<body class="age-restricted">
+    <!-- Age Verification Overlay -->
+    <div id="age-verification" class="age-overlay">
+        <div class="age-video-container">
+            <video autoplay muted loop playsinline id="age-bg-video" poster="public/images/age-bg-poster.jpg">
+                <source src="public/videos/age-bg.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="age-content">
+            <div class="age-logo" style="margin-bottom: 30px;">
+                <img src="public/images/logo.png" alt="OUDHIRA" class="logo-img" style="height: 80px !important;">
+            </div>
+            <h2>Are you under 18 years old?</h2>
+            <div class="age-buttons">
+                <button id="age-yes" class="btn-gray" onclick="handleAgeYes()">Yes</button>
+                <button id="age-no" class="btn-gold" onclick="handleAgeNo()">No, I'm over.</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleAgeYes() {
+            alert('Sorry, you must be 18 or older to access this site.');
+            window.location.href = 'https://www.google.com';
+        }
+
+        function handleAgeNo() {
+            // 立即移除限制样式
+            document.body.classList.remove('age-restricted');
+            document.body.style.overflow = 'auto';
+            
+            // 显示主内容
+            var wrapper = document.getElementById('app-wrapper');
+            if (wrapper) {
+                wrapper.style.setProperty('display', 'block', 'important');
+            }
+            
+            // 隐藏遮罩层
+            var overlay = document.getElementById('age-verification');
+            if (overlay) {
+                overlay.style.setProperty('display', 'none', 'important');
+            }
+
+            // 如果已经验证过，立即隐藏预加载动画，防止从其他页面跳回时闪现
+            var preloader = document.getElementById('preloader');
+            if (preloader && sessionStorage.getItem('age-verified') === 'true') {
+                preloader.style.display = 'none';
+            }
+            
+            // 记录验证状态
+            sessionStorage.setItem('age-verified', 'true');
+        }
+
+        // 页面加载时检查状态
+        (function() {
+            // 调整年龄验证背景视频速度
+            window.addEventListener('DOMContentLoaded', function() {
+                var ageVideo = document.getElementById('age-bg-video');
+                if (ageVideo) {
+                    ageVideo.playbackRate = 0.5; // 设置为 0.5 倍速，让烟雾飘动更细腻
+                }
+            });
+
+            if (sessionStorage.getItem('age-verified') === 'true') {
+                window.addEventListener('DOMContentLoaded', function() {
+                    handleAgeNo();
+                });
+            }
+        })();
+    </script>
+
+    <div id="app-wrapper" class="main-content-wrapper" style="display: none !important;">
+        <!-- Preloader -->
+        <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="gold-ring"></div>
+            <div class="brand-text">OUDHIRA</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#home">
+                    <img src="public/images/logo.png" alt="OUDHIRA LOGO" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-content-right">
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="nav-link active" data-i18n="nav_home">Home</a>
+                    <a href="heritage.html" class="nav-link" data-i18n="nav_heritage">Brand Story</a>
+                    <div class="nav-link-wrapper">
+                        <a href="products.html" class="nav-link" data-i18n="nav_products">Products <i class="fas fa-chevron-down"></i></a>
+                        <div class="nav-dropdown">
+                            <a href="product-master.html" class="dropdown-item" data-i18n="tab_master">THE MASTER</a>
+                            <a href="product-aura.html" class="dropdown-item" data-i18n="tab_aura">AURA</a>
+                        </div>
+                    </div>
+                    <a href="experience.html" class="nav-link" data-i18n="nav_experience">Experience</a>
+                    <a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
+                    <a href="#" class="nav-icon"><i class="fas fa-search"></i></a>
+                    <a href="#" class="nav-icon shopping-cart">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="lang-switcher">
+                        <button class="nav-icon lang-btn" id="langSwitch">
+                            <i class="fas fa-globe"></i>
+                        </button>
+                        <div class="lang-menu">
+                            <a href="#" class="active" onclick="changeLanguage('en')">English</a>
+                            <a href="#" onclick="changeLanguage('ar')">العربية (Arabic)</a>
+                            <a href="#" onclick="changeLanguage('ja')">日本語 (Japanese)</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section (Video Only) -->
+    <section class="hero" id="home">
+            <div class="hero-video-container">
+                <video autoplay muted loop playsinline class="hero-video" id="hero-bg-video" poster="public/images/hero-poster.jpg">
+                    <source src="public/videos/hero-bg.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div id="video-unmute-hint" style="position: absolute; bottom: 20px; right: 20px; z-index: 10; background: rgba(0,0,0,0.5); color: #e3ccae; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; border: 1px solid #e3ccae;" onclick="toggleAudio('hero-bg-video', 'video-unmute-hint')">
+                    <i class="fas fa-volume-mute"></i> Click to unmute
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-container">
+            <div class="contact-content">
+                <div class="section-header">
+                    <span class="section-tag" data-i18n="contact_tag">Contact Us</span>
+                    <h2 class="section-title" data-i18n="contact_title">Get In Touch</h2>
+                    <div class="title-decoration">
+                        <span class="deco-line"></span>
+                        <span class="deco-diamond"></span>
+                        <span class="deco-line"></span>
+                    </div>
+                </div>
+                <p class="contact-desc" data-i18n="contact_desc">
+                    Have questions about our collection? Our specialists are here to help you choose the perfect experience.
+                </p>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>johnny@oudhira.com</span>
+                    </div>
+                    <div class="info-item whatsapp-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div class="whatsapp-content">
+                            <span data-i18n="whatsapp_chat">Chat with us on WhatsApp</span>
+                            <div class="qr-container">
+                                <img src="public/images/whatsapp-qr.png" alt="WhatsApp QR Code">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Downtown Dubai, UAE</span>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-container">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" data-i18n-placeholder="form_name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" data-i18n-placeholder="form_email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea data-i18n-placeholder="form_message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span data-i18n="form_submit">Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="public/images/logo.png" alt="OUDHIRA LOGO" class="logo-img-footer">
+                    </div>
+                    <p data-i18n="footer_desc">Redefining luxury through the essence of authentic Oud.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer_links_title">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                        <li><a href="heritage.html" data-i18n="nav_heritage">Heritage</a></li>
+                        <li><a href="experience.html" data-i18n="nav_experience">Experience</a></li>
+                        <li><a href="products.html" data-i18n="nav_products">Products</a></li>
+                        <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4 data-i18n="footer_follow_us">Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/oudhira_official/" target="_blank" title="Instagram Official"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/oudhira_official_jp/" target="_blank" title="Instagram Japan"><i class="fab fa-instagram"></i> <small style="font-size: 10px; position: absolute; margin-top: 15px; margin-left: -10px;">JP</small></a>
+                        <a href="https://www.facebook.com/profile.php?id=61587469697260" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://ca.pinterest.com/Oudhira/" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer_rights">&copy; 2026 OUDHIRA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    </div> <!-- End main-content-wrapper -->
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <img src="public/images/Breathing.png" alt="Back to Top">
+    </div>
+
+    <script src="public/js/main.js"></script>
+    <script src="public/js/i18n.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
