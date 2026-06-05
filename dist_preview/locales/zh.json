@@ -1,0 +1,201 @@
+﻿{
+    "lang": "zh",
+    "langName": "中文",
+    "dir": "ltr",
+    "meta": {
+        "title": "金沉香 | OUD GOLD - 高端沉香电子烟",
+        "description": "探索极致奢华，首款融入正宗沉香香氛的电子烟"
+    },
+    "nav": {
+        "home": "首页",
+        "heritage": "传承",
+        "video": "视频展示",
+        "products": "产品",
+        "experience": "体验",
+        "contact": "联系我们"
+    },
+    "hero": {
+        "badge": "奢华体验",
+        "title1": "沉香精粹",
+        "title2": "尽在每一口",
+        "subtitle": "探索极致奢华，首款融入正宗沉香香氛的电子烟",
+        "cta1": "探索系列",
+        "cta2": "观看体验",
+        "scroll": "向下滑动"
+    },
+    "heritage": {
+        "tag": "我们的传承",
+        "title": "沉香的千年传奇",
+        "lead": "千百年来，沉香一直是中东地区奢华与品位的象征",
+        "text": "我们为您带来独特体验，将传统沉香的醇正与最新电子雾化技术完美结合，每一口都是非凡的香氛时刻",
+        "stats": {
+            "natural": {
+                "number": "100%",
+                "label": "天然沉香"
+            },
+            "gold": {
+                "number": "24K",
+                "label": "黄金工艺"
+            },
+            "experience": {
+                "number": "∞",
+                "label": "难忘体验"
+            }
+        }
+    },
+    "products": {
+        "tag": "臻选系列",
+        "title": "金沉香精选",
+        "orderNow": "立即订购",
+        "puffs": "口",
+        "items": [
+            {
+                "id": 1,
+                "name": "皇家沉香",
+                "description": "柬埔寨顶级沉香，融合白麝香的优雅",
+                "puffs": 500,
+                "battery": "650mAh",
+                "price": 899,
+                "currency": "AED",
+                "badge": "热销款",
+                "type": "royal"
+            },
+            {
+                "id": 2,
+                "name": "苏丹沉香",
+                "description": "印度沉香、琥珀与藏红花的尊贵调配",
+                "puffs": 800,
+                "battery": "850mAh",
+                "price": 1499,
+                "currency": "AED",
+                "badge": "限量版",
+                "featured": true,
+                "type": "premium"
+            },
+            {
+                "id": 3,
+                "name": "夜之沉香",
+                "description": "神秘印尼沉香配塔伊夫玫瑰",
+                "puffs": 600,
+                "battery": "750mAh",
+                "price": 1099,
+                "currency": "AED",
+                "badge": "新品",
+                "type": "elegant"
+            }
+        ]
+    },
+    "videoShowcase": {
+        "tag": "品牌展示",
+        "title": "金沉香：视觉盛宴",
+        "description": "沉浸在沉香的奢华世界中，感受每一缕烟雾背后的匠心与传承。"
+    },
+    "experience": {
+        "tag": "极致体验",
+        "title": "感官之旅",
+        "videoLabel": "观看体验",
+        "features": [
+            {
+                "icon": "gem",
+                "title": "奢华设计",
+                "description": "24K镀金机身，搭配正宗阿拉伯纹饰"
+            },
+            {
+                "icon": "leaf",
+                "title": "100%天然沉香",
+                "description": "萃取自东南亚原始森林的顶级沉香木"
+            },
+            {
+                "icon": "microchip",
+                "title": "先进科技",
+                "description": "陶瓷加热系统，完美保留香气纯正度"
+            },
+            {
+                "icon": "shield-alt",
+                "title": "品质保证",
+                "description": "两年质保，7×24小时客户服务"
+            }
+        ]
+    },
+    "testimonials": {
+        "tag": "客户评价",
+        "title": "听听客户怎么说",
+        "items": [
+            {
+                "text": "非凡的体验！每一口都散发着正宗沉香的芬芳。这不仅是产品，更是一种生活方式。",
+                "author": "穆罕默德·艾哈迈德",
+                "initials": "MA",
+                "location": "迪拜，阿联酋"
+            },
+            {
+                "text": "设计非常典雅，品质卓越。已成为我日常聚会的必备品。强烈推荐！",
+                "author": "哈立德·赛义德",
+                "initials": "KS",
+                "location": "利雅得，沙特阿拉伯"
+            },
+            {
+                "text": "送给沉香爱好者的完美礼物。包装奢华，产品超出预期。",
+                "author": "法蒂玛·阿里",
+                "initials": "FA",
+                "location": "多哈，卡塔尔"
+            }
+        ]
+    },
+    "contact": {
+        "tag": "联系我们",
+        "title": "成为家族一员",
+        "description": "我们期待您的咨询或定制需求",
+        "email": "info@oudgold.ae",
+        "phone": "+971 4 123 4567",
+        "address": "阿联酋迪拜",
+        "form": {
+            "name": "您的姓名",
+            "email": "电子邮箱",
+            "phone": "联系电话",
+            "message": "您的留言",
+            "submit": "发送消息",
+            "success": "感谢您的留言！我们将尽快回复您。"
+        }
+    },
+    "footer": {
+        "tagline": "每一口，皆奢华",
+        "quickLinks": {
+            "title": "快速链接",
+            "home": "首页",
+            "heritage": "传承",
+            "products": "产品",
+            "experience": "体验"
+        },
+        "customerService": {
+            "title": "客户服务",
+            "faq": "常见问题",
+            "returns": "退换政策",
+            "shipping": "配送服务",
+            "tracking": "订单追踪"
+        },
+        "shop": {
+            "title": "商城",
+            "collection": "全部产品",
+            "limited": "限量版",
+            "accessories": "配件",
+            "giftCards": "礼品卡"
+        },
+        "newsletter": {
+            "title": "订阅资讯",
+            "description": "获取最新优惠和新品信息",
+            "placeholder": "电子邮箱",
+            "success": "订阅成功！"
+        },
+        "copyright": "© 2025 金沉香 OUD GOLD. 版权所有",
+        "legal": {
+            "privacy": "隐私政策",
+            "terms": "服务条款"
+        }
+    },
+    "common": {
+        "loading": "加载中...",
+        "error": "发生错误",
+        "close": "关闭"
+    }
+}
+
