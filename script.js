@@ -222,3 +222,7 @@ console.log('%c عود الذهب | OUD GOLD ',
 console.log('%c Premium Agarwood Vape Experience ', 
     'color: #d4af37; font-size: 14px; padding: 5px;'
 );
+
+function toggleAudio(){
+    window.open('https://www.youtube.com/watch?v=eAM0xr5j6vw','_blank')
+}
