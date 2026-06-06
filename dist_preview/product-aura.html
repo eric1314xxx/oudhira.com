@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | OUDHIRA - Premium Agarwood Vape</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-hero {
+            padding-top: 180px;
+            padding-bottom: 100px;
+            background: radial-gradient(circle at center, rgba(227, 204, 174, 0.05) 0%, transparent 70%);
+            text-align: center;
+        }
+        .product-hero-title {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+        .product-hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+        .feature-item {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(227, 204, 174, 0.1);
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+        .feature-item:hover {
+            border-color: var(--gold);
+            background: rgba(227, 204, 174, 0.03);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 25px;
+        }
+        .feature-title {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .feature-desc {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        .product-detail-section {
+            padding: 100px 0;
+        }
+        .detail-row {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            margin-bottom: 100px;
+        }
+        .detail-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .detail-image {
+            flex: 1;
+            height: 500px;
+            background: var(--black-medium);
+            border-radius: 30px;
+            border: 1px solid rgba(227, 204, 174, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .detail-content {
+            flex: 1;
+        }
+        .detail-title {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 25px;
+        }
+        .detail-text {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        @media (max-width: 992px) {
+            .detail-row { flex-direction: column !important; gap: 40px; }
+            .product-hero-title { font-size: 3rem; }
+            .detail-image { height: 350px; width: 100%; }
+            .detail-content { text-align: center; }
+        }
+        @media (max-width: 576px) {
+            .product-hero-title { font-size: 2.2rem; letter-spacing: 2px; }
+            .product-hero { padding-top: 140px; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .detail-title { font-size: 2rem; }
+            .detail-image { height: 280px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 强制颜色修复 SVG 滤镜 - 绝对锁定 #e3ccae -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="iphone-gold-fix">
+                <feColorMatrix type="matrix" values="0 0 0 0 0.89  0 0 0 0 0.80  0 0 0 0 0.68  0 0 0 1 0" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="public/images/logo.png" alt="OUDHIRA LOGO" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-content-right">
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
+                    <a href="heritage.html" class="nav-link" data-i18n="nav_heritage">Brand Story</a>
+                    <div class="nav-link-wrapper">
+                        <a href="products.html" class="nav-link active" data-i18n="nav_products">Products <i class="fas fa-chevron-down"></i></a>
+                        <div class="nav-dropdown">
+                            <a href="product-master.html" class="dropdown-item" data-i18n="tab_master">THE MASTER</a>
+                            <a href="product-aura.html" class="dropdown-item" data-i18n="tab_aura">AURA</a>
+                        </div>
+                    </div>
+                    <a href="experience.html" class="nav-link" data-i18n="nav_experience">Experience</a>
+                    <a href="index.html#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
+                    <a href="#" class="nav-icon"><i class="fas fa-search"></i></a>
+                    <a href="#" class="nav-icon shopping-cart">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="lang-switcher">
+                        <button class="nav-icon lang-btn" id="langSwitch">
+                            <i class="fas fa-globe"></i>
+                        </button>
+                        <div class="lang-menu">
+                            <a href="#" class="active" onclick="changeLanguage('en')">English</a>
+                            <a href="#" onclick="changeLanguage('ar')">العربية (Arabic)</a>
+                            <a href="#" onclick="changeLanguage('ja')">日本語 (Japanese)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="product-hero">
+        <div class="section-container">
+            <h1 class="product-hero-title" data-i18n="tab_aura">AURA</h1>
+            <p class="product-hero-subtitle" data-i18n="product_aura_morning_desc">A lighter, refreshing take on Oud. Blended with white musk and citrus for a sophisticated daily ritual.</p>
+        </div>
+    </section>
+
+    <section class="product-detail-section">
+        <div class="section-container">
+            <div class="detail-row">
+                <div class="detail-image"></div>
+                <div class="detail-content">
+                    <h2 class="detail-title" data-i18n="product_aura_velvet">Velvet Aura</h2>
+                    <p class="detail-text" data-i18n="product_aura_velvet_desc">Smooth and creamy. Saffron and vanilla meet premium Oud for a velvety, comforting scent profile. Perfect for moments of reflection and calm.</p>
+                    <button class="buy-btn" data-i18n="btn_buy">Order Now</button>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="fas fa-feather feature-icon"></i>
+                    <h3 class="feature-title">Light & Airy</h3>
+                    <p class="feature-desc">A delicate balance of oud and floral notes for daily wear.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-leaf feature-icon"></i>
+                    <h3 class="feature-title">Modern Ritual</h3>
+                    <p class="feature-desc">Designed for the contemporary lifestyle without losing tradition.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-wind feature-icon"></i>
+                    <h3 class="feature-title">Soothing Scent</h3>
+                    <p class="feature-desc">Calming properties of natural agarwood in every puff.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="public/images/logo.png" alt="OUDHIRA LOGO" class="logo-img-footer">
+                    </div>
+                    <p data-i18n="footer_desc">Redefining luxury through the essence of authentic Oud.</p>
+                </div>
+                <div class="footer-social">
+                    <h4 data-i18n="footer_follow_us">Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer_rights">&copy; 2026 OUDHIRA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <img src="public/images/Breathing.png" alt="Back to Top">
+    </div>
+
+    <script src="public/js/main.js"></script>
+    <script src="public/js/i18n.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
