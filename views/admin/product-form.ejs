@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= isEdit ? '编辑产品' : '添加产品' %> - OUD GOLD 后台</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <span class="arabic">عود الذهب</span>
+                <span class="english">OUD GOLD</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="/admin" class="active"><i class="fas fa-box"></i> 产品管理</a></li>
+                <li><a href="/admin/guide"><i class="fas fa-book"></i> 使用指南</a></li>
+                <li><a href="/" target="_blank"><i class="fas fa-external-link-alt"></i> 查看网站</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <h1><i class="fas fa-<%= isEdit ? 'edit' : 'plus' %>"></i> <%= isEdit ? '编辑产品' : '添加新产品' %></h1>
+                <div class="user-info">
+                    <a href="/admin" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> 返回列表</a>
+                </div>
+            </div>
+
+            <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-error">
+                <i class="fas fa-exclamation-circle"></i> <%= error %>
+            </div>
+            <% } %>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>产品信息</h2>
+                </div>
+                <div class="form-container">
+                    <form action="<%= isEdit ? '/admin/products/edit/' + product.id : '/admin/products/new' %>" method="POST" enctype="multipart/form-data">
+                        
+                        <!-- 基本信息 -->
+                        <h3 style="color:#d4af37;margin-bottom:20px;font-size:16px;">
+                            <i class="fas fa-info-circle"></i> 基本信息
+                        </h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>产品ID <span class="required">*</span></label>
+                                <input type="text" name="id" value="<%= isEdit ? product.id : '' %>" 
+                                       placeholder="例如: royal-oud" required <%= isEdit ? 'readonly' : '' %>>
+                                <p class="form-help">唯一标识符，只能使用英文、数字和连字符</p>
+                            </div>
+                            <div class="form-group">
+                                <label>产品类型</label>
+                                <select name="type">
+                                    <option value="royal" <%= isEdit && product.type === 'royal' ? 'selected' : '' %>>Royal (皇家金)</option>
+                                    <option value="premium" <%= isEdit && product.type === 'premium' ? 'selected' : '' %>>Premium (尊贵款)</option>
+                                    <option value="elegant" <%= isEdit && product.type === 'elegant' ? 'selected' : '' %>>Elegant (典雅款)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 多语言名称 -->
+                        <h3 style="color:#d4af37;margin:30px 0 20px;font-size:16px;">
+                            <i class="fas fa-language"></i> 产品名称（多语言）
+                        </h3>
+
+                        <div class="lang-tabs">
+                            <button type="button" class="lang-tab active" data-lang="zh">中文</button>
+                            <button type="button" class="lang-tab" data-lang="en">English</button>
+                            <button type="button" class="lang-tab" data-lang="ar">العربية</button>
+                        </div>
+
+                        <div class="lang-content active" data-lang="zh">
+                            <div class="form-group">
+                                <label>产品名称 (中文) <span class="required">*</span></label>
+                                <input type="text" name="name_zh" value="<%= isEdit ? product.name.zh : '' %>" 
+                                       placeholder="例如: 皇家沉香" required>
+                            </div>
+                            <div class="form-group">
+                                <label>产品描述 (中文)</label>
+                                <textarea name="description_zh" placeholder="产品的详细描述..."><%= isEdit ? product.description.zh : '' %></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>标签文字 (中文)</label>
+                                <input type="text" name="badge_zh" value="<%= isEdit ? product.badge.zh : '' %>" 
+                                       placeholder="例如: 热销款、新品、限量版">
+                            </div>
+                        </div>
+
+                        <div class="lang-content" data-lang="en">
+                            <div class="form-group">
+                                <label>Product Name (English) <span class="required">*</span></label>
+                                <input type="text" name="name_en" value="<%= isEdit ? product.name.en : '' %>" 
+                                       placeholder="e.g. Royal Oud" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Description (English)</label>
+                                <textarea name="description_en" placeholder="Product description..."><%= isEdit ? product.description.en : '' %></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Badge Text (English)</label>
+                                <input type="text" name="badge_en" value="<%= isEdit ? product.badge.en : '' %>" 
+                                       placeholder="e.g. Best Seller, New, Limited">
+                            </div>
+                        </div>
+
+                        <div class="lang-content" data-lang="ar">
+                            <div class="form-group">
+                                <label>اسم المنتج (العربية) <span class="required">*</span></label>
+                                <input type="text" name="name_ar" value="<%= isEdit ? product.name.ar : '' %>" 
+                                       placeholder="مثال: عود ملكي" dir="rtl" required>
+                            </div>
+                            <div class="form-group">
+                                <label>الوصف (العربية)</label>
+                                <textarea name="description_ar" placeholder="وصف المنتج..." dir="rtl"><%= isEdit ? product.description.ar : '' %></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>نص الشارة (العربية)</label>
+                                <input type="text" name="badge_ar" value="<%= isEdit ? product.badge.ar : '' %>" 
+                                       placeholder="مثال: الأكثر مبيعاً" dir="rtl">
+                            </div>
+                        </div>
+
+                        <!-- 规格信息 -->
+                        <h3 style="color:#d4af37;margin:30px 0 20px;font-size:16px;">
+                            <i class="fas fa-cog"></i> 产品规格
+                        </h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>吸数 (Puffs) <span class="required">*</span></label>
+                                <input type="number" name="puffs" value="<%= isEdit ? product.puffs : '500' %>" required>
+                            </div>
+                            <div class="form-group">
+                                <label>电池容量</label>
+                                <input type="text" name="battery" value="<%= isEdit ? product.battery : '650mAh' %>" 
+                                       placeholder="例如: 650mAh">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>价格 <span class="required">*</span></label>
+                                <input type="number" name="price" value="<%= isEdit ? product.price : '' %>" 
+                                       placeholder="例如: 899" required>
+                            </div>
+                            <div class="form-group">
+                                <label>货币</label>
+                                <select name="currency">
+                                    <option value="AED" <%= isEdit && product.currency === 'AED' ? 'selected' : '' %>>AED (迪拉姆)</option>
+                                    <option value="SAR" <%= isEdit && product.currency === 'SAR' ? 'selected' : '' %>>SAR (里亚尔)</option>
+                                    <option value="USD" <%= isEdit && product.currency === 'USD' ? 'selected' : '' %>>USD (美元)</option>
+                                    <option value="CNY" <%= isEdit && product.currency === 'CNY' ? 'selected' : '' %>>CNY (人民币)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 产品图片 -->
+                        <h3 style="color:#d4af37;margin:30px 0 20px;font-size:16px;">
+                            <i class="fas fa-image"></i> 产品图片
+                        </h3>
+
+                        <div class="form-group">
+                            <label>上传图片</label>
+                            <div class="image-upload" onclick="document.getElementById('imageInput').click()">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>点击上传产品图片</p>
+                                <small>支持 JPG, PNG 格式，建议尺寸 800x800</small>
+                                <input type="file" name="image" id="imageInput" accept="image/*" style="display:none" onchange="previewImage(this)">
+                                <% if (isEdit && product.image) { %>
+                                <img src="/uploads/<%= product.image %>" class="image-preview" id="preview">
+                                <% } else { %>
+                                <img src="" class="image-preview" id="preview" style="display:none">
+                                <% } %>
+                            </div>
+                        </div>
+
+                        <!-- 状态设置 -->
+                        <h3 style="color:#d4af37;margin:30px 0 20px;font-size:16px;">
+                            <i class="fas fa-toggle-on"></i> 状态设置
+                        </h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" name="active" <%= !isEdit || product.active ? 'checked' : '' %>>
+                                    上架显示（勾选后产品将显示在网站上）
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" name="featured" <%= isEdit && product.featured ? 'checked' : '' %>>
+                                    设为特色产品（将在产品列表中突出显示）
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>排序顺序</label>
+                            <input type="number" name="order" value="<%= isEdit ? product.order : '1' %>" min="1">
+                            <p class="form-help">数字越小越靠前</p>
+                        </div>
+
+                        <!-- 提交按钮 -->
+                        <div style="margin-top:30px;padding-top:20px;border-top:1px solid rgba(212,175,55,0.1);">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> <%= isEdit ? '保存修改' : '添加产品' %>
+                            </button>
+                            <a href="/admin" class="btn btn-secondary" style="margin-left:10px;">
+                                <i class="fas fa-times"></i> 取消
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Language tabs
+        document.querySelectorAll('.lang-tab').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lang = this.dataset.lang;
+                
+                document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.lang-content').forEach(c => c.classList.remove('active'));
+                
+                this.classList.add('active');
+                document.querySelector(`.lang-content[data-lang="${lang}"]`).classList.add('active');
+            });
+        });
+
+        // Image preview
+        function previewImage(input) {
+            const preview = document.getElementById('preview');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用指南 - OUD GOLD 后台</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <style>
+        .guide-content {
+            background: #1a1a1a;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        .guide-content h2 {
+            color: #d4af37;
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .guide-content h3 {
+            color: #fff;
+            font-size: 16px;
+            margin: 25px 0 15px;
+        }
+        .guide-content p {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        .guide-content ul, .guide-content ol {
+            color: #aaa;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        .guide-content li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .guide-content code {
+            background: #0a0a0a;
+            color: #d4af37;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .guide-content .tip {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid #d4af37;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .guide-content .tip strong {
+            color: #d4af37;
+        }
+        .guide-content .warning {
+            background: rgba(220, 53, 69, 0.1);
+            border-left: 4px solid #dc3545;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .guide-content .warning strong {
+            color: #dc3545;
+        }
+        .guide-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .guide-content table th,
+        .guide-content table td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .guide-content table th {
+            background: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: #d4af37;
+            color: #000;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <span class="arabic">عود الذهب</span>
+                <span class="english">OUD GOLD</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="/admin"><i class="fas fa-box"></i> 产品管理</a></li>
+                <li><a href="/admin/guide" class="active"><i class="fas fa-book"></i> 使用指南</a></li>
+                <li><a href="/" target="_blank"><i class="fas fa-external-link-alt"></i> 查看网站</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <h1><i class="fas fa-book"></i> 使用指南</h1>
+                <div class="user-info">
+                    <span><i class="fas fa-user"></i> <%= username %></span>
+                    <a href="/admin/logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> 退出</a>
+                </div>
+            </div>
+
+            <!-- 快速开始 -->
+            <div class="guide-content">
+                <h2><i class="fas fa-rocket"></i> 快速开始</h2>
+                <p>欢迎使用 OUD GOLD 网站后台管理系统！这个指南将帮助你快速上手产品管理。</p>
+                
+                <div class="tip">
+                    <strong><i class="fas fa-lightbulb"></i> 提示：</strong>
+                    后台管理地址是 <code>/admin</code>，收藏一下方便以后访问！
+                </div>
+            </div>
+
+            <!-- 添加新产品 -->
+            <div class="guide-content">
+                <h2><i class="fas fa-plus-circle"></i> 如何添加新产品</h2>
+                
+                <h3><span class="step-number">1</span> 准备产品图片</h3>
+                <p>在添加产品之前，请先准备好产品图片：</p>
+                <ul>
+                    <li>推荐尺寸：<strong>800 x 800 像素</strong>（正方形）</li>
+                    <li>格式：<strong>PNG</strong>（推荐，支持透明背景）或 <strong>JPG</strong></li>
+                    <li>文件大小：建议不超过 <strong>2MB</strong></li>
+                    <li>背景：推荐使用<strong>透明背景</strong>或<strong>深色背景</strong>以配合网站风格</li>
+                </ul>
+
+                <h3><span class="step-number">2</span> 点击"添加新产品"</h3>
+                <p>在产品管理页面，点击右上角的<strong>「添加新产品」</strong>按钮。</p>
+
+                <h3><span class="step-number">3</span> 填写产品信息</h3>
+                <table>
+                    <tr>
+                        <th>字段</th>
+                        <th>说明</th>
+                        <th>示例</th>
+                    </tr>
+                    <tr>
+                        <td>产品ID</td>
+                        <td>唯一标识符，只能用英文、数字、连字符</td>
+                        <td><code>royal-oud</code></td>
+                    </tr>
+                    <tr>
+                        <td>产品名称</td>
+                        <td>需要填写3种语言版本</td>
+                        <td>中文、英文、阿拉伯文</td>
+                    </tr>
+                    <tr>
+                        <td>价格</td>
+                        <td>产品售价，只填数字</td>
+                        <td><code>899</code></td>
+                    </tr>
+                    <tr>
+                        <td>吸数</td>
+                        <td>电子烟的吸取次数</td>
+                        <td><code>500</code></td>
+                    </tr>
+                </table>
+
+                <h3><span class="step-number">4</span> 上传图片</h3>
+                <p>点击图片上传区域，选择你准备好的产品图片。</p>
+
+                <h3><span class="step-number">5</span> 保存</h3>
+                <p>确认信息无误后，点击<strong>「添加产品」</strong>按钮保存。</p>
+
+                <div class="tip">
+                    <strong><i class="fas fa-lightbulb"></i> 提示：</strong>
+                    产品添加后会立即显示在网站上（如果勾选了"上架显示"）。
+                </div>
+            </div>
+
+            <!-- 编辑产品 -->
+            <div class="guide-content">
+                <h2><i class="fas fa-edit"></i> 如何编辑产品</h2>
+                <ol>
+                    <li>在产品列表中找到要编辑的产品</li>
+                    <li>点击该产品行右侧的 <i class="fas fa-edit" style="color:#d4af37"></i> 编辑按钮</li>
+                    <li>修改需要更新的信息</li>
+                    <li>点击<strong>「保存修改」</strong>按钮</li>
+                </ol>
+            </div>
+
+            <!-- 产品类型说明 -->
+            <div class="guide-content">
+                <h2><i class="fas fa-tags"></i> 产品类型说明</h2>
+                <p>不同的产品类型会显示不同的外观样式：</p>
+                <table>
+                    <tr>
+                        <th>类型</th>
+                        <th>说明</th>
+                        <th>适合</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Royal</strong></td>
+                        <td>皇家金 - 经典金色调</td>
+                        <td>标准产品</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Premium</strong></td>
+                        <td>尊贵款 - 突出显示</td>
+                        <td>高端/限量产品</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Elegant</strong></td>
+                        <td>典雅款 - 简约风格</td>
+                        <td>新品/特别款</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- 多语言说明 -->
+            <div class="guide-content">
+                <h2><i class="fas fa-language"></i> 多语言支持</h2>
+                <p>网站支持三种语言，每个产品需要提供三种语言的内容：</p>
+                <ul>
+                    <li><strong>中文 (zh)</strong> - 面向中国客户</li>
+                    <li><strong>英文 (en)</strong> - 国际客户</li>
+                    <li><strong>阿拉伯文 (ar)</strong> - 中东客户（主要市场）</li>
+                </ul>
+                
+                <div class="tip">
+                    <strong><i class="fas fa-lightbulb"></i> 阿拉伯文输入提示：</strong>
+                    如果不会打阿拉伯文，可以使用 Google 翻译将中文或英文翻译成阿拉伯文，然后复制粘贴到对应字段。
+                </div>
+            </div>
+
+            <!-- 注意事项 -->
+            <div class="guide-content">
+                <h2><i class="fas fa-exclamation-triangle"></i> 注意事项</h2>
+                
+                <div class="warning">
+                    <strong><i class="fas fa-exclamation-circle"></i> 重要：</strong>
+                    删除产品是不可恢复的操作，请谨慎操作！
+                </div>
+
+                <ul>
+                    <li>产品ID一旦设置后<strong>不能修改</strong>，请确保填写正确</li>
+                    <li>建议先将产品设为<strong>「下架」</strong>状态，确认无误后再上架</li>
+                    <li>「特色产品」会在网站上以更突出的方式显示，建议只设置1-2个</li>
+                    <li>排序顺序数字越小，产品显示越靠前</li>
+                </ul>
+            </div>
+
+            <!-- 常见问题 -->
+            <div class="guide-content">
+                <h2><i class="fas fa-question-circle"></i> 常见问题</h2>
+                
+                <h3>Q: 上传的图片不显示怎么办？</h3>
+                <p>请检查图片格式是否为 JPG 或 PNG，文件大小是否超过限制。</p>
+
+                <h3>Q: 如何让某个产品临时下架？</h3>
+                <p>编辑该产品，取消勾选「上架显示」选项即可。下架后产品不会在网站上显示，但数据会保留。</p>
+
+                <h3>Q: 忘记密码怎么办？</h3>
+                <p>请联系技术人员帮你重置密码。</p>
+
+                <h3>Q: 网站访问地址是什么？</h3>
+                <p>
+                    前台首页：<code>http://你的域名/</code><br>
+                    后台管理：<code>http://你的域名/admin</code>
+                </p>
+            </div>
+
+            <!-- 联系支持 -->
+            <div class="guide-content">
+                <h2><i class="fas fa-headset"></i> 技术支持</h2>
+                <p>如果遇到任何问题，请联系技术人员获取帮助。</p>
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>

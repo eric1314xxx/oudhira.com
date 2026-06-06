@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= isRTL ? 'rtl' : 'ltr' %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= t.nav.heritage %> | <%= t.meta.title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .heritage { padding-top: 150px; min-height: 80vh; }
+        .navbar { background: rgba(0,0,0,0.9) !important; }
+        .heritage-visual { position: relative; }
+        .visual-frame { width: 100%; aspect-ratio: 1; max-width: 500px; position: relative; margin: 0 auto; }
+        .frame-corner { position: absolute; width: 60px; height: 60px; border: 2px solid var(--gold); }
+        .frame-corner.top-right { top: 0; right: 0; border-bottom: none; border-left: none; }
+        .frame-corner.top-left { top: 0; left: 0; border-bottom: none; border-right: none; }
+        .frame-corner.bottom-right { bottom: 0; right: 0; border-top: none; border-left: none; }
+        .frame-corner.bottom-left { bottom: 0; left: 0; border-top: none; border-right: none; }
+        .visual-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; display: flex; align-items: center; justify-content: center; }
+        .oud-chips { position: relative; width: 200px; height: 200px; }
+        .chip { position: absolute; background: linear-gradient(135deg, #3d2914 0%, #1a0f08 100%); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); }
+        .chip-1 { width: 100px; height: 80px; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-10deg); }
+        .chip-2 { width: 70px; height: 60px; top: 20%; left: 20%; transform: rotate(15deg); }
+        .heritage-stats { display: flex; gap: 40px; margin-top: 40px; }
+        .stat-item { text-align: center; }
+        .stat-number { display: block; font-size: 2.5rem; font-weight: 700; color: var(--gold); font-family: var(--font-display); }
+        .stat-label { font-size: 0.9rem; color: var(--gray); }
+    </style>
+</head>
+<body class="lang-<%= lang %>">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="OUDHIRA LOGO" style="height: 50px;">
+                </a>
+            </div>
+            <div class="nav-content-right">
+                <div class="nav-links">
+                    <a href="/" class="nav-link"><%= t.nav.home %></a>
+                    <a href="/heritage" class="nav-link active"><%= t.nav.heritage %></a>
+                    <a href="/products" class="nav-link"><%= t.nav.products %></a>
+                    <a href="/experience" class="nav-link"><%= t.nav.experience %></a>
+                    <a href="/#contact" class="nav-link"><%= t.nav.contact %></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Heritage Section -->
+    <section class="heritage" id="heritage">
+        <div class="section-container">
+            <div class="heritage-content">
+                <div class="section-header">
+                    <span class="section-tag"><%= t.heritage.tag %></span>
+                    <h2 class="section-title"><%= t.hero.title1 %> <br><span class="gold"><%= t.hero.title2 %></span></h2>
+                </div>
+                <div class="heritage-text">
+                    <p class="lead"><%= t.hero.subtitle %></p>
+                    <p><%= t.heritage.text %></p>
+                </div>
+                <div class="heritage-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label"><%= t.heritage.stats.pure %></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label"><%= t.heritage.stats.years %></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50k+</span>
+                        <span class="stat-label"><%= t.heritage.stats.clients %></span>
+                    </div>
+                </div>
+            </div>
+            <div class="heritage-visual">
+                <div class="visual-frame">
+                    <div class="frame-corner top-left"></div>
+                    <div class="frame-corner top-right"></div>
+                    <div class="frame-corner bottom-left"></div>
+                    <div class="frame-corner bottom-right"></div>
+                    <div class="visual-content">
+                        <div class="oud-chips">
+                            <div class="chip chip-1"></div>
+                            <div class="chip chip-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <div class="footer-container">
+                <p class="copyright"><%= t.footer.copyright %></p>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+</html>

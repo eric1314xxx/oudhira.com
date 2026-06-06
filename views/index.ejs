@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= isRTL ? 'rtl' : 'ltr' %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= t.meta.title %></title>
+    <meta name="description" content="<%= t.meta.description %>">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 强制颜色修复 SVG 滤镜 -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="iphone-gold-filter-ejs">
+                <feColorMatrix type="matrix" values="0 0 0 0 0.89  0 0 0 0 0.80  0 0 0 0 0.68  0 0 0 1 0" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- 强制颜色修复 SVG 滤镜 - 绝对锁定 #e3ccae -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="iphone-gold-fix-ejs">
+                <feColorMatrix type="matrix" values="0 0 0 0 0.89  0 0 0 0 0.80  0 0 0 0 0.68  0 0 0 1 0" />
+            </filter>
+        </defs>
+    </svg>
+
+    <style>
+        /* 1. 调整视频布局：缩小一点，避开导航栏 */
+        .hero-video-container {
+            position: relative !important;
+            margin-top: 80px !important;
+            width: 100% !important;
+            height: calc(100vh - 80px) !important;
+            z-index: 1 !important;
+            background: #000 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            overflow: hidden !important;
+        }
+        .hero-video-container video {
+            max-width: 95% !important;
+            max-height: 95% !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+
+        /* 2. 导航栏整体重构：Logo 在左，其余全部靠右 */
+        .navbar {
+            height: 100px !important;
+            display: flex !important;
+            align-items: center !important;
+            background: rgba(0,0,0,0.9) !important;
+            padding: 0 50px !important;
+        }
+
+        .nav-container {
+            display: flex !important;
+            align-items: center !important;
+            width: 100% !important;
+            max-width: none !important;
+            justify-content: space-between !important;
+        }
+
+        /* LOGO 样式：精准颜色与大小 */
+        .logo img, .logo-img, .footer-logo img, #age-verification img {
+            height: 50px !important; 
+            width: auto !important;
+            filter: url(#iphone-gold-fix-ejs) !important;
+            -webkit-filter: url(#iphone-gold-fix-ejs) !important;
+        }
+
+        /* 菜单与图标组合：整体向右靠拢 */
+        .nav-content-right {
+            display: flex !important;
+            align-items: center !important;
+            margin-left: auto !important;
+        }
+
+        .nav-links {
+            display: flex !important;
+            gap: 40px !important; /* 菜单项之间的间距 */
+            margin-right: 50px !important;
+            list-style: none !important;
+            margin-bottom: 0 !important;
+        }
+
+        .nav-link {
+            font-size: 1.1rem !important; 
+            font-weight: 600 !important;
+            color: #fff !important;
+            text-decoration: none !important;
+            text-transform: uppercase !important;
+            white-space: nowrap !important; /* 绝对禁止换行 */
+            letter-spacing: 1px !important;
+            transition: 0.3s !important;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #e3ccae !important;
+        }
+
+        .nav-actions {
+            display: flex !important;
+            align-items: center !important;
+            gap: 30px !important; /* 图标之间的间距 */
+        }
+
+        .nav-icon {
+            font-size: 1.4rem !important;
+            color: #fff !important;
+            cursor: pointer !important;
+            transition: 0.3s !important;
+            background: none !important;
+            border: none !important;
+            padding: 0 !important;
+        }
+
+        .nav-icon:hover {
+            color: #e3ccae !important;
+        }
+
+        /* 购物车气泡修正 */
+        .cart-count {
+            width: 18px !important;
+            height: 18px !important;
+            font-size: 0.7rem !important;
+            top: -5px !important;
+            right: -10px !important;
+            background: #e3ccae !important;
+            color: #000 !important;
+        }
+    </style>
+</head>
+<body class="lang-<%= lang %> age-restricted">
+    <!-- Age Verification Overlay -->
+    <div id="age-verification" class="age-overlay">
+        <div class="age-video-container">
+            <video autoplay muted loop playsinline id="age-bg-video" poster="/images/age-bg-poster.jpg">
+                <source src="/videos/age-bg.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="age-content">
+            <div class="age-logo">
+                <img src="/images/logo.png" alt="OUDHIRA" style="filter: brightness(0) saturate(100%) invert(70%) sepia(50%) saturate(1000%) hue-rotate(10deg) brightness(100%) contrast(105%); width: 150px;">
+            </div>
+            <h2>Are you under 18 years old?</h2>
+            <div class="age-buttons">
+                <button id="age-yes" class="btn-gray" onclick="handleAgeYes()">Yes</button>
+                <button id="age-no" class="btn-gold" onclick="handleAgeNo()">No, I'm over.</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleAgeYes() {
+            alert('Sorry, you must be 18 or older to access this site.');
+            window.location.href = 'https://www.google.com';
+        }
+
+        function handleAgeNo() {
+            document.body.classList.remove('age-restricted');
+            document.body.style.overflow = 'auto';
+            var wrapper = document.getElementById('app-wrapper');
+            if (wrapper) {
+                wrapper.style.setProperty('display', 'block', 'important');
+            }
+            var overlay = document.getElementById('age-verification');
+            if (overlay) {
+                overlay.style.setProperty('display', 'none', 'important');
+            }
+            sessionStorage.setItem('age-verified', 'true');
+        }
+
+        (function() {
+            if (sessionStorage.getItem('age-verified') === 'true') {
+                window.addEventListener('DOMContentLoaded', function() {
+                    handleAgeNo();
+                });
+            }
+        })();
+    </script>
+
+    <div id="app-wrapper" class="main-content-wrapper" style="display: none !important;">
+        <!-- Preloader -->
+        <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="gold-ring"></div>
+            <div class="brand-text"><%= lang === 'ja' ? 'ウードヒラ' : (lang === 'ar' ? 'أودهيرا' : 'OUDHIRA') %></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#home">
+                    <img src="/images/logo.png" alt="OUDHIRA LOGO" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-content-right">
+                <div class="nav-links" id="navLinks">
+                    <a href="/" class="nav-link active"><%= t.nav.home %></a>
+                    <a href="/heritage" class="nav-link"><%= t.nav.heritage %></a>
+                    <a href="/products" class="nav-link"><%= t.nav.products %></a>
+                    <a href="/experience" class="nav-link"><%= t.nav.experience %></a>
+                    <a href="#contact" class="nav-link"><%= t.nav.contact %></a>
+                </div>
+                <div class="nav-actions">
+                    <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
+                    <a href="#" class="nav-icon"><i class="fas fa-search"></i></a>
+                    <a href="#" class="nav-icon shopping-cart">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="lang-switcher">
+                        <button class="nav-icon lang-btn" id="langSwitch">
+                            <i class="fas fa-globe"></i>
+                        </button>
+                        <div class="lang-menu">
+                            <a href="#" class="lang-option <%= lang === 'en' ? 'active' : '' %>" data-lang="en">English</a>
+                            <a href="#" class="lang-option <%= lang === 'ar' ? 'active' : '' %>" data-lang="ar">العربية</a>
+                            <a href="#" class="lang-option <%= lang === 'ja' ? 'active' : '' %>" data-lang="ja">日本語</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section (Video Only) -->
+    <section class="hero" id="home">
+            <div class="hero-video-container">
+                <video autoplay muted loop playsinline class="hero-video" id="hero-bg-video-ejs" poster="/images/hero-poster.jpg">
+                    <source src="/videos/hero-bg.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div id="video-unmute-hint-ejs" style="position: absolute; bottom: 20px; right: 20px; z-index: 10; background: rgba(0,0,0,0.5); color: #e3ccae; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; border: 1px solid #e3ccae;" onclick="toggleAudio('hero-bg-video-ejs', 'video-unmute-hint-ejs')">
+                    <i class="fas fa-volume-mute"></i> Click to unmute
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-container">
+            <div class="contact-content">
+                <div class="section-header">
+                    <span class="section-tag"><%= t.contact.tag %></span>
+                    <h2 class="section-title"><%= t.contact.title %></h2>
+                    <div class="title-decoration">
+                        <span class="deco-line"></span>
+                        <span class="deco-diamond"></span>
+                        <span class="deco-line"></span>
+                    </div>
+                </div>
+                <p class="contact-desc">
+                    <%= t.contact.description %>
+                </p>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span><%= t.contact.email %></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span dir="ltr"><%= t.contact.phone %></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span><%= t.contact.address %></span>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-snapchat"></i></a>
+                </div>
+            </div>
+            <div class="contact-form-wrapper">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="<%= t.contact.form.name %>" required>
+                        <label for="name"><%= t.contact.form.name %></label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="<%= t.contact.form.email %>" required>
+                        <label for="email"><%= t.contact.form.email %></label>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="<%= t.contact.form.phone %>" dir="ltr">
+                        <label for="phone"><%= t.contact.form.phone %></label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="<%= t.contact.form.message %>" rows="4" required></textarea>
+                        <label for="message"><%= t.contact.form.message %></label>
+                    </div>
+                    <button type="submit" class="btn btn-submit">
+                        <span><%= t.contact.form.submit %></span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <% if (lang === 'ar') { %>
+                            <span class="logo-arabic">أودهيرا</span>
+                        <% } else if (lang === 'ja') { %>
+                            <span class="logo-arabic">ウードヒラ</span>
+                        <% } %>
+                        <span class="logo-english">OUDHIRA</span>
+                    </div>
+                    <p class="footer-tagline"><%= t.footer.tagline %></p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4><%= t.footer.quickLinks.title %></h4>
+                        <ul>
+                            <li><a href="/"><%= t.footer.quickLinks.home %></a></li>
+                            <li><a href="/heritage"><%= t.footer.quickLinks.heritage %></a></li>
+                            <li><a href="/products"><%= t.footer.quickLinks.products %></a></li>
+                            <li><a href="/experience"><%= t.footer.quickLinks.experience %></a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4><%= t.footer.customerService.title %></h4>
+                        <ul>
+                            <li><a href="#"><%= t.footer.customerService.faq %></a></li>
+                            <li><a href="#"><%= t.footer.customerService.returns %></a></li>
+                            <li><a href="#"><%= t.footer.customerService.shipping %></a></li>
+                            <li><a href="#"><%= t.footer.customerService.tracking %></a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4><%= t.footer.shop.title %></h4>
+                        <ul>
+                            <li><a href="#"><%= t.footer.shop.collection %></a></li>
+                            <li><a href="#"><%= t.footer.shop.limited %></a></li>
+                            <li><a href="#"><%= t.footer.shop.accessories %></a></li>
+                            <li><a href="#"><%= t.footer.shop.giftCards %></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h4><%= t.footer.newsletter.title %></h4>
+                    <p><%= t.footer.newsletter.description %></p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" name="email" placeholder="<%= t.footer.newsletter.placeholder %>" required>
+                        <button type="submit">
+                            <i class="fas fa-arrow-<%= isRTL ? 'left' : 'right' %>"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-container">
+                <p class="copyright">
+                    <%= t.footer.copyright %>
+                </p>
+                <div class="footer-legal">
+                    <a href="#"><%= t.footer.legal.privacy %></a>
+                    <a href="#"><%= t.footer.legal.terms %></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div> <!-- End main-content-wrapper -->
+
+    <script>
+        // Pass translations to JavaScript
+        window.APP_CONFIG = {
+            lang: '<%= lang %>',
+            isRTL: <%= isRTL %>,
+            messages: {
+                contactSuccess: '<%= t.contact.form.success %>',
+                newsletterSuccess: '<%= t.footer.newsletter.success %>',
+                loading: '<%= t.common.loading %>',
+                error: '<%= t.common.error %>'
+            }
+        };
+    </script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
