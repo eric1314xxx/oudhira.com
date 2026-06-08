@@ -48,6 +48,8 @@
                         <div class="nav-dropdown">
                             <a href="product-master.html" class="dropdown-item" data-i18n="tab_master">THE MASTER</a>
                             <a href="product-aura.html" class="dropdown-item" data-i18n="tab_aura">AURA</a>
+                            <!-- 新增 Pandora 产品入口 -->
+                            <a href="product-pandora.html" class="dropdown-item" data-i18n="tab_pandora">PANDORA</a>
                         </div>
                     </div>
                     <a href="experience.html" class="nav-link" data-i18n="nav_experience">Experience</a>
@@ -88,10 +90,12 @@
                 <h2 class="section-title" data-i18n="products_title">OUDHIRA Collection</h2>
             </div>
 
-            <!-- Tab Navigation -->
+            <!-- ========== 【新增】Pandora 标签按钮 ========== -->
             <div class="product-tabs">
                 <button class="tab-btn active" onclick="switchTab('master')" data-i18n="tab_master">THE MASTER</button>
                 <button class="tab-btn" onclick="switchTab('aura')" data-i18n="tab_aura">AURA</button>
+                <!-- 新增Pandora切换标签，格式与前两个完全一致 -->
+                <button class="tab-btn" onclick="switchTab('pandora')" data-i18n="tab_pandora">PANDORA</button>
             </div>
 
             <!-- THE MASTER Tab Content -->
@@ -277,6 +281,99 @@
                     </div>
                 </div>
             </div>
+
+            <!-- ========== 【全新新增】PANDORA 产品标签页内容 ========== -->
+            <div id="pandora" class="tab-content">
+                <div class="products-grid">
+                    <!-- Pandora 系列产品 1 -->
+                    <div class="product-card">
+                        <span class="product-tag" data-i18n="product_tag_limited">Limited Edition</span>
+                        <div class="product-image-container">
+                            <div class="product-image-placeholder"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name" data-i18n="product_pandora_classic">Classic Pandora</h3>
+                            <p class="product-desc" data-i18n="product_pandora_classic_desc">A unique layered oud aroma with rich fragrance. Classic formula combines rare raw materials and exquisite craftsmanship.</p>
+                            <div class="product-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_capacity">Capacity</span>
+                                    <span class="spec-value">1.8ml</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_puffs">Puffs</span>
+                                    <span class="spec-value">700+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency" data-i18n="currency">AED</span>
+                                <span class="amount">1,399</span>
+                            </div>
+                            <button class="buy-btn" data-i18n="btn_buy">Order Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Pandora 系列产品 2 -->
+                    <div class="product-card">
+                        <span class="product-tag" data-i18n="product_tag_new">New Release</span>
+                        <div class="product-image-container">
+                            <div class="product-image-placeholder"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name" data-i18n="product_pandora_mystic">Mystic Pandora</h3>
+                            <p class="product-desc" data-i18n="product_pandora_mystic_desc">Mysterious and enchanting scent. Mixed with floral notes and deep oud, bringing an exclusive sensory experience.</p>
+                            <div class="product-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_capacity">Capacity</span>
+                                    <span class="spec-value">1.8ml</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_puffs">Puffs</span>
+                                    <span class="spec-value">700+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency" data-i18n="currency">AED</span>
+                                <span class="amount">1,499</span>
+                            </div>
+                            <button class="buy-btn" data-i18n="btn_buy">Order Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Pandora 系列产品 3 -->
+                    <div class="product-card">
+                        <span class="product-tag" data-i18n="product_tag_exclusive">Exclusive</span>
+                        <div class="product-image-container">
+                            <div class="product-image-placeholder"></div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name" data-i18n="product_pandora_gold">Golden Pandora</h3>
+                            <p class="product-desc" data-i18n="product_pandora_gold_desc">Top-tier limited collection. Luxurious golden tone with strong lasting power, for elite collectors.</p>
+                            <div class="product-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_capacity">Capacity</span>
+                                    <span class="spec-value">1.8ml</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label" data-i18n="spec_puffs">Puffs</span>
+                                    <span class="spec-value">700+</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency" data-i18n="currency">AED</span>
+                                <span class="amount">1,799</span>
+                            </div>
+                            <button class="buy-btn" data-i18n="btn_buy">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================= -->
         </div>
     </section>
 
@@ -305,7 +402,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const tab = urlParams.get('tab');
-            if (tab === 'master' || tab === 'aura') {
+            if (tab === 'master' || tab === 'aura' || tab === 'pandora') {
                 switchTab(tab);
             }
         });

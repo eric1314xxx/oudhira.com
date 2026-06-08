@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PANDORA | OUDHIRA - Premium Agarwood Vape</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 产品详情页专属样式，和Master/Aura完全统一 */
+        .product-detail {
+            padding-top: 150px;
+            min-height: 100vh;
+            background: #000;
+        }
+        .detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        /* 产品主图区域 */
+        .product-main-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+            align-items: center;
+        }
+        .product-main-img-wrap {
+            border-radius: 20px;
+            overflow: hidden;
+            background: #111;
+            aspect-ratio: 1/1;
+        }
+        .product-main-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* 产品文字信息 */
+        .product-info-wrap {
+            color: #fff;
+        }
+        .product-badge {
+            display: inline-block;
+            background: #e3ccae;
+            color: #000;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .product-title {
+            font-size: 3rem;
+            color: #e3ccae;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        .product-desc {
+            color: #ccc;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .product-specs-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(227, 204, 174, 0.2);
+        }
+        .spec-label {
+            color: #aaa;
+        }
+        .spec-value {
+            color: #e3ccae;
+            font-weight: bold;
+        }
+        .product-price {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+        .price-currency {
+            color: #e3ccae;
+            font-size: 1.2rem;
+        }
+        .price-amount {
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .buy-btn {
+            background: #e3ccae;
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .buy-btn:hover {
+            background: #d4b896;
+        }
+        /* 产品细节画廊 */
+        .gallery-section {
+            margin-bottom: 80px;
+        }
+        .gallery-title {
+            color: #e3ccae;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            background: #111;
+            aspect-ratio: 1/1;
+        }
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+        /* 返回产品列表按钮 */
+        .back-btn-wrap {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .back-btn {
+            color: #e3ccae;
+            text-decoration: none;
+            border: 1px solid #e3ccae;
+            padding: 12px 30px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background: #e3ccae;
+            color: #000;
+        }
+        /* 移动端适配 */
+        @media (max-width: 992px) {
+            .product-main-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .product-title {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <!-- 保留全站SVG金色滤镜 -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="iphone-gold-filter">
+                <feColorMatrix type="matrix" values="0 0 0 0 0.89  0 0 0 0 0.80  0 0 0 0 0.68  0 0 0 1 0" />
+            </filter>
+            <filter id="iphone-gold-fix">
+                <feColorMatrix type="matrix" values="0 0 0 0 0.89  0 0 0 0 0.80  0 0 0 0 0.68  0 0 0 1 0" />
+            </filter>
+        </defs>
+    </svg>
+</head>
+<body>
+    <!-- 预加载动画 保留原有 -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="gold-ring"></div>
+            <div class="brand-text">OUDHIRA</div>
+        </div>
+    </div>
+
+    <!-- 导航栏（已包含Pandora下拉选项，和products.html同步） -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="public/images/logo.png" alt="OUDHIRA LOGO" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-content-right">
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
+                    <a href="heritage.html" class="nav-link" data-i18n="nav_heritage">Brand Story</a>
+                    <div class="nav-link-wrapper">
+                        <a href="products.html" class="nav-link active" data-i18n="nav_products">Products <i class="fas fa-chevron-down"></i></a>
+                        <div class="nav-dropdown">
+                            <a href="product-master.html" class="dropdown-item" data-i18n="tab_master">THE MASTER</a>
+                            <a href="product-aura.html" class="dropdown-item" data-i18n="tab_aura">AURA</a>
+                            <a href="product-pandora.html" class="dropdown-item" data-i18n="tab_pandora">PANDORA</a>
+                        </div>
+                    </div>
+                    <a href="experience.html" class="nav-link" data-i18n="nav_experience">Experience</a>
+                    <a href="index.html#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
+                    <a href="#" class="nav-icon"><i class="fas fa-search"></i></a>
+                    <a href="#" class="nav-icon shopping-cart">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="lang-switcher">
+                        <button class="nav-icon lang-btn" id="langSwitch">
+                            <i class="fas fa-globe"></i>
+                        </button>
+                        <div class="lang-menu">
+                            <a href="#" class="active" onclick="changeLanguage('en')">English</a>
+                            <a href="#" onclick="changeLanguage('ar')">العربية (Arabic)</a>
+                            <a href="#" onclick="changeLanguage('ja')">日本語 (Japanese)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Pandora 产品详情主体 -->
+    <main class="product-detail">
+        <div class="detail-container">
+            <!-- 产品主图+信息区域 -->
+            <div class="product-main-section">
+                <div class="product-main-img-wrap">
+                    <!-- 后续替换为你的Pandora主图 -->
+                    <img class="product-main-img" src="public/images/products/pandora/main.jpg" alt="PANDORA - OUDHIRA" loading="lazy">
+                </div>
+                <div class="product-info-wrap">
+                    <span class="product-badge" data-i18n="product_tag_limited">Limited Edition</span>
+                    <h1 class="product-title" data-i18n="tab_pandora">PANDORA</h1>
+                    <p class="product-desc" data-i18n="product_pandora_desc">
+                        Pandora features a unique layered oud fragrance with rich and lasting aroma.
+                        As our exclusive limited-edition collection, it combines traditional craftsmanship and modern design,
+                        bringing you an extraordinary sensory experience with rare raw materials and exquisite formula.
+                    </p>
+                    <ul class="product-specs-list">
+                        <li class="spec-item">
+                            <span class="spec-label" data-i18n="spec_capacity">Capacity</span>
+                            <span class="spec-value">1.8ml</span>
+                        </li>
+                        <li class="spec-item">
+                            <span class="spec-label" data-i18n="spec_puffs">Puffs</span>
+                            <span class="spec-value">700+</span>
+                        </li>
+                        <li class="spec-item">
+                            <span class="spec-label" data-i18n="spec_flavor">Flavor</span>
+                            <span class="spec-value">Layered Oud Blend</span>
+                        </li>
+                        <li class="spec-item">
+                            <span class="spec-label" data-i18n="spec_nicotine">Nicotine Strength</span>
+                            <span class="spec-value">5%</span>
+                        </li>
+                    </ul>
+                    <div class="product-price">
+                        <span class="price-currency" data-i18n="currency">AED</span>
+                        <span class="price-amount">1,399</span>
+                    </div>
+                    <button class="buy-btn" data-i18n="btn_buy">Order Now</button>
+                </div>
+            </div>
+
+            <!-- 产品细节画廊 -->
+            <div class="gallery-section">
+                <h2 class="gallery-title" data-i18n="product_gallery">Product Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img class="gallery-img" src="public/images/products/pandora/detail1.jpg" alt="Pandora Detail 1" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img class="gallery-img" src="public/images/products/pandora/detail2.jpg" alt="Pandora Detail 2" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img class="gallery-img" src="public/images/products/pandora/detail3.jpg" alt="Pandora Detail 3" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img class="gallery-img" src="public/images/products/pandora/detail4.jpg" alt="Pandora Detail 4" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 返回产品列表按钮 -->
+            <div class="back-btn-wrap">
+                <a href="products.html" class="back-btn" data-i18n="btn_back_products">← Back to All Products</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚（和全站统一） -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="public/images/logo.png" alt="OUDHIRA LOGO" class="logo-img-footer">
+                    </div>
+                    <p data-i18n="footer_desc">Redefining luxury through the essence of authentic Oud.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer_links_title">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                        <li><a href="heritage.html" data-i18n="nav_heritage">Heritage</a></li>
+                        <li><a href="products.html" data-i18n="nav_products">Products</a></li>
+                        <li><a href="index.html#contact" data-i18n="nav_contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4 data-i18n="footer_follow_us">Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/oudhira_official/" target="_blank" title="Instagram Official"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/oudhira_official_jp/" target="_blank" title="Instagram Japan"><i class="fab fa-instagram"></i> <small style="font-size: 10px; position: absolute; margin-top: 15px; margin-left: -10px;">JP</small></a>
+                        <a href="https://www.facebook.com/profile.php?id=61587469697260" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://ca.pinterest.com/Oudhira/" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer_rights">&copy; 2026 OUDHIRA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <img src="public/images/Breathing.png" alt="Back to Top">
+    </div>
+
+    <!-- 公共JS文件（和全站统一） -->
+    <script src="public/js/main.js"></script>
+    <script src="public/js/i18n.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
