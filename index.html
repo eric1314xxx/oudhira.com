@@ -256,19 +256,19 @@
 
         // 原生HTML5视频 静音/取消静音 逻辑（适配R2视频）
         function toggleAudio(videoId, hintId) {
-        const video = document.getElementById(videoId);
-        const hintDom = document.getElementById(hintId);
-    
-        // 切换静音状态
-        video.muted = !video.muted;
+            const video = document.getElementById(videoId);
+            const hintDom = document.getElementById(hintId);
+        
+            // 切换静音状态
+            video.muted = !video.muted;
 
-        // 切换按钮图标&文字
-        if (video.muted) {
-         hintDom.innerHTML = '<i class="fas fa-volume-mute"></i> Click to unmute';
-        } else {
-            hintDom.innerHTML = '<i class="fas fa-volume-up"></i> Click to mute';
+            // 切换按钮图标&文字
+            if (video.muted) {
+                hintDom.innerHTML = '<i class="fas fa-volume-mute"></i> Click to unmute';
+            } else {
+                hintDom.innerHTML = '<i class="fas fa-volume-up"></i> Click to mute';
+            }
         }
-    }
     </script>
 
     <div id="app-wrapper" class="main-content-wrapper" style="display: none !important;">
@@ -331,50 +331,32 @@
         </div>
     </nav>
 
-    <!-- Home Section 【核心修改：本地视频 → YouTube 内嵌流】 -->
+    <!-- Home Section 修复后 -->
     <section class="hero" id="home">
-            <div class="hero-video-container">
-                <!-- 视频加载前封面占位图（保留原poster） -->
-                <img class="video-poster" src="public/images/hero-poster.jpg" alt="Video Poster">
-                <!-- YouTube 内嵌视频 完整参数：自动播放+静音+循环+隐藏控件+防跟踪 -->
-                <section class="hero" id="home">
-                    <div class="hero-video-container">
-                        <!-- 视频加载前封面占位图（保留原poster） -->
-                        <img class="video-poster" src="public/images/hero-poster.jpg" alt="Video Poster">
-                
-                        <!-- ========== 新增 R2 云端视频标签 ========== -->
-                        <video 
-                            id="hero-bg-video"
-                            class="hero-video"
-                            autoplay muted loop playsinline
-                            poster="public/images/hero-poster.jpg">
-                            <!-- 👉 此处替换为你的 R2 自定义域名视频链接 -->
-                            <source src="https://media.oudhira.com/Hero-Bg.mp4" type="video/mp4">
-                        </video>
-                
-                        <!-- 音量按钮 完全保留原有代码、样式、点击事件 -->
-                        <div id="video-unmute-hint" style="position: absolute; bottom: 20px; right: 20px; z-index: 10; background: rgba(0,0,0,0.5); color: #e3ccae; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; border: 1px solid #e3ccae;" onclick="toggleAudio('hero-bg-video', 'video-unmute-hint')">
-                            <i class="fas fa-volume-mute"></i> Click to unmute
-                        </div>
-                    </div>
-                    <div class="scroll-indicator">
-                        <div class="mouse">
-                            <div class="wheel"></div>
-                        </div>
-                    </div>
-                </section>
+        <div class="hero-video-container">
+            <!-- 视频加载前封面占位图 -->
+            <img class="video-poster" src="public/images/hero-poster.jpg" alt="Video Poster">
 
-                <!-- 音量控制按钮 【完全保留原按钮、原点击事件】 -->
-                <div id="video-unmute-hint" style="position: absolute; bottom: 20px; right: 20px; z-index: 10; background: rgba(0,0,0,0.5); color: #e3ccae; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; border: 1px solid #e3ccae;" onclick="toggleAudio('hero-bg-video', 'video-unmute-hint')">
-                    <i class="fas fa-volume-mute"></i> Click to unmute
-                </div>
+            <!-- R2 云端视频标签 -->
+            <video 
+                id="hero-bg-video"
+                class="hero-video"
+                autoplay muted loop playsinline
+                poster="public/images/hero-poster.jpg">
+                <source src="https://media.oudhira.com/Hero-Bg.mp4" type="video/mp4">
+            </video>
+
+            <!-- 音量按钮 -->
+            <div id="video-unmute-hint" style="position: absolute; bottom: 20px; right: 20px; z-index: 10; background: rgba(0,0,0,0.5); color: #e3ccae; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; border: 1px solid #e3ccae;" onclick="toggleAudio('hero-bg-video', 'video-unmute-hint')">
+                <i class="fas fa-volume-mute"></i> Click to unmute
             </div>
-            <div class="scroll-indicator">
-                <div class="mouse">
-                    <div class="wheel"></div>
-                </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
             </div>
-        </section>
+        </div>
+    </section>
 
     <!-- Contact Section 【完全保留】 -->
     <section class="contact" id="contact">
