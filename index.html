@@ -118,13 +118,25 @@
             align-items: center !important;
             overflow: hidden !important;
         }
-        .hero-video-container video {
+        /* ========== 【新增】YouTube iframe 全屏样式，和原视频视觉完全一致 ========== */
+        .hero-video-container iframe {
             width: 100% !important;
             height: 100% !important;
+            border: 0 !important;
             object-fit: cover !important;
         }
+        /* 封面图占位（视频加载前显示） */
+        .video-poster {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            pointer-events: none;
+        }
 
-        /* 导航栏背景在首页设为透明或半透明，提升视觉效果 */
         .whatsapp-item {
             align-items: flex-start !important;
         }
@@ -179,7 +191,7 @@
     </style>
 </head>
 <body class="age-restricted">
-    <!-- Age Verification Overlay -->
+    <!-- Age Verification Overlay 【保留原有本地视频，未做修改】 -->
     <div id="age-verification" class="age-overlay">
         <div class="age-video-container">
             <video autoplay muted loop playsinline id="age-bg-video" poster="public/images/age-bg-poster.jpg">
@@ -248,6 +260,31 @@
                 });
             }
         })();
+
+        // ========== 【重点修改】适配 YouTube 视频的 静音/取消静音 按钮逻辑 ==========
+        let isMuted = true;
+        const youtubeVideoId = "eAM0xr5j6vw";
+        function toggleAudio(videoId, hintId) {
+            isMuted = !isMuted;
+            const hintDom = document.getElementById(hintId);
+            // 切换图标+文字
+            if(isMuted){
+                hintDom.innerHTML = '<i class="fas fa-volume-mute"></i> Click to unmute';
+            }else{
+                hintDom.innerHTML = '<i class="fas fa-volume-up"></i> Click to mute';
+            }
+            // 向 YouTube 内嵌视频发送静音指令
+            const iframe = document.querySelector('.hero-video-container iframe');
+            if(iframe){
+                iframe.contentWindow.postMessage(
+                    JSON.stringify({
+                        event: 'command',
+                        func: isMuted ? 'mute' : 'unmute'
+                    }),
+                    '*'
+                );
+            }
+        }
     </script>
 
     <div id="app-wrapper" class="main-content-wrapper" style="display: none !important;">
@@ -259,7 +296,7 @@
         </div>
     </div>
 
-    <!-- Navigation -->
+    <!-- Navigation 【完全保留原导航】 -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo">
@@ -310,13 +347,20 @@
         </div>
     </nav>
 
-    <!-- Home Section (Video Only) -->
+    <!-- Home Section 【核心修改：本地视频 → YouTube 内嵌流】 -->
     <section class="hero" id="home">
             <div class="hero-video-container">
-                <video autoplay muted loop playsinline class="hero-video" id="hero-bg-video" poster="public/images/hero-poster.jpg">
-                    <source src="public/videos/hero-bg.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <!-- 视频加载前封面占位图（保留原poster） -->
+                <img class="video-poster" src="public/images/hero-poster.jpg" alt="Video Poster">
+                <!-- YouTube 内嵌视频 完整参数：自动播放+静音+循环+隐藏控件+防跟踪 -->
+                <iframe 
+                    src="https://www.youtube.com/embed/eAM0xr5j6vw?autoplay=1&mute=1&loop=1&playlist=eAM0xr5j6vw&controls=0&modestbranding=1&rel=0"
+                    allow="autoplay; encrypted-media; fullscreen"
+                    referrerpolicy="no-referrer"
+                    allowfullscreen>
+                </iframe>
+
+                <!-- 音量控制按钮 【完全保留原按钮、原点击事件】 -->
                 <div id="video-unmute-hint" style="position: absolute; bottom: 20px; right: 20px; z-index: 10; background: rgba(0,0,0,0.5); color: #e3ccae; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; border: 1px solid #e3ccae;" onclick="toggleAudio('hero-bg-video', 'video-unmute-hint')">
                     <i class="fas fa-volume-mute"></i> Click to unmute
                 </div>
@@ -328,7 +372,7 @@
             </div>
         </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section 【完全保留】 -->
     <section class="contact" id="contact">
         <div class="section-container">
             <div class="contact-content">
@@ -384,7 +428,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer 【完全保留】 -->
     <footer class="footer">
         <div class="section-container">
             <div class="footer-top">
@@ -421,7 +465,7 @@
     </footer>
     </div> <!-- End main-content-wrapper -->
 
-    <!-- Back to Top Button -->
+    <!-- Back to Top Button 【完全保留】 -->
     <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
         <img src="public/images/Breathing.png" alt="Back to Top">
     </div>
