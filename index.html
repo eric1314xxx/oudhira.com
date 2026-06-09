@@ -118,7 +118,16 @@
             align-items: center !important;
             overflow: hidden !important;
         }
-        /* 封面图占位（视频加载前显示） */
+
+        /* ========== 新增：视频本体自适应样式（解决手机变形、全屏） ========== */
+        .hero-video {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
+        }
+
+        /* 封面图占位（仅保留video自带poster，已删除独立img标签） */
         .video-poster {
             position: absolute;
             top: 0;
@@ -150,7 +159,7 @@
 
         .back-to-top.show {
             opacity: 1;
-            visibility: visible;
+            visibility: hidden;
         }
 
         .back-to-top img {
@@ -180,7 +189,12 @@
             filter: url(#iphone-gold-fix) drop-shadow(0 15px 40px rgba(227, 204, 174, 1));
         }
 
-        /* 响应式调整 */
+        /* 移动端全局兼容 */
+        @media (max-width: 768px) {
+            .hero-video-container {
+                height: 100vh !important;
+            }
+        }
     </style>
 </head>
 <body class="age-restricted">
@@ -331,13 +345,10 @@
         </div>
     </nav>
 
-    <!-- Home Section 修复后 -->
+    <!-- Home Section 修复后（已删除多余海报img） -->
     <section class="hero" id="home">
         <div class="hero-video-container">
-            <!-- 视频加载前封面占位图 -->
-            <img class="video-poster" src="public/images/hero-poster.jpg" alt="Video Poster">
-
-            <!-- R2 云端视频标签 -->
+            <!-- R2 云端视频标签（仅使用video自带poster，删除独立img） -->
             <video 
                 id="hero-bg-video"
                 class="hero-video"
