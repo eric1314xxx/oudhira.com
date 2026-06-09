@@ -43,7 +43,7 @@
             background: #e3ccae;
             margin: 30px auto;
         }
-        /* 图文左右布局（电脑端） */
+        /* 原有左右图文布局（仅保留给技术板块使用） */
         .row-flex {
             display: flex;
             align-items: center;
@@ -54,10 +54,21 @@
         .row-flex .col-text {
             flex: 1;
         }
-        .row-flex img {
+        /* 新增：上下图文布局（本次重点使用） */
+        .col-stack {
+            display: block;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .col-stack .col-text {
+            margin-bottom: 30px;
+        }
+        .col-stack img {
             width: 100%;
+            max-width: 1000px;
             border-radius: 12px;
             object-fit: cover;
+            margin: 0 auto;
         }
         /* 卡片通用样式 */
         .card-box {
@@ -90,7 +101,7 @@
             gap: 25px;
             margin-bottom: 80px;
         }
-        /* 列表样式（价值观/功效） */
+        /* 列表样式（价值观/技术板块使用） */
         .list-item {
             display: flex;
             align-items: center;
@@ -119,7 +130,7 @@
             margin-top: 15px;
             color: #999;
         }
-        /* 移动端适配：所有布局改为上下堆叠 */
+        /* 移动端适配 */
         @media (max-width: 768px) {
             .row-flex {
                 flex-direction: column;
@@ -154,7 +165,7 @@
         </div>
     </div>
 
-    <!-- 导航栏 完全保留原有（含Products下拉） -->
+    <!-- 导航栏 完全保留原有 -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo">
@@ -204,10 +215,10 @@
         </div>
     </nav>
 
-    <!-- ========== 全新品牌故事主体内容（图片全部使用R2域名+懒加载） ========== -->
+    <!-- ========== 主体内容（已按要求修改布局&文案） ========== -->
     <main class="heritage-wrap">
-        <!-- 1. 头部Banner：品牌标语 + 丝绸之路图 -->
-        <div class="row-flex">
+        <!-- 1. 丝绸之路板块【已改：上下布局 文字在上+图片在下】 -->
+        <div class="col-stack">
             <div class="col-text">
                 <h1 class="section-main-title">OUDHIRA</h1>
                 <p class="section-sub-title">Where Ancient Agarwood Meets Modern Alchemy</p>
@@ -218,18 +229,17 @@
                 </p>
             </div>
             <div class="col-img">
-                <!-- R2 图片 + 原生懒加载 loading="lazy" -->
                 <img src="https://media.oudhira.com/heritage/silkroad.png" alt="Silk Road & Agarwood" loading="lazy">
             </div>
         </div>
 
-        <!-- 2. 名言引言区块 -->
+        <!-- 2. 名言引言区块 保持不变 -->
         <div class="quote-box">
             <p class="quote-text">The fragrance of agarwood is the breath of time.</p>
             <p class="quote-author">—— Jalāl al-Dīn Muḥammad Rūmī</p>
         </div>
 
-        <!-- 3. 品牌简介：使命 + 价值观 -->
+        <!-- 3. 品牌简介：使命 + 价值观 保持不变 -->
         <h2 class="section-main-title">ABOUT OUDHIRA</h2>
         <div class="divider"></div>
 
@@ -250,30 +260,23 @@
             <div class="list-item"><i class="fas fa-microchip"></i> Technological Innovation</div>
         </div>
 
-        <!-- 4. 沉香天然价值：分子对比 + 六大功效 -->
-        <div class="row-flex">
-            <div class="col-img">
-                <!-- R2 图片 + 原生懒加载 -->
-                <img src="https://media.oudhira.com/heritage/agarwood-material.png" alt="Agarwood Natural Value" loading="lazy">
-            </div>
+        <!-- 4. 沉香价值板块【已改：上下布局 + 删除6项功效，仅保留标题】 -->
+        <div class="col-stack">
             <div class="col-text">
                 <h3 class="card-title">Nature's Gold, Engineered for Elegance</h3>
                 <p class="card-text">
                     Rose: <span class="num-highlight">300</span> extractable odor molecules per gram<br>
                     Agarwood: <span class="num-highlight">27,000</span> extractable odor molecules per gram
                 </p>
-                <br>
-                <p class="card-text"><strong>Health Benefits of Agarwood:</strong></p>
-                <div class="list-item"><i class="fas fa-heartbeat"></i> Immune System Support</div>
-                <div class="list-item"><i class="fas fa-stomach"></i> Benefit for Digestive System</div>
-                <div class="list-item"><i class="fas fa-moon"></i> Stress Alleviation and Improved Sleep</div>
-                <div class="list-item"><i class="fas fa-shield-alt"></i> Antioxidant and Antimicrobial</div>
-                <div class="list-item"><i class="fas fa-heart"></i> Support Heart Health</div>
-                <div class="list-item"><i class="fas fa-lungs"></i> Beneficial for Respiratory Health</div>
+                <!-- 仅保留标题，下方6条功效已全部删除 -->
+                <p class="card-text" style="margin-top:20px;"><strong>Health Benefits of Agarwood:</strong></p>
+            </div>
+            <div class="col-img">
+                <img src="https://media.oudhira.com/heritage/agarwood-material.png" alt="Agarwood Natural Value" loading="lazy">
             </div>
         </div>
 
-        <!-- 5. 核心技术创新 -->
+        <!-- 5. 核心技术创新 保持原有左右布局不变 -->
         <h2 class="section-main-title">TECHNOLOGY INNOVATION</h2>
         <div class="divider"></div>
         <p class="section-sub-title">Engineered for Discretion, Crafted for Distinction</p>
@@ -296,12 +299,11 @@
                 </div>
             </div>
             <div class="col-img">
-                <!-- R2 图片 + 原生懒加载 -->
                 <img src="https://media.oudhira.com/heritage/tech-extract.png" alt="Core Technology" loading="lazy">
             </div>
         </div>
 
-        <!-- 6. 品牌理念：FOR THE 0.01% -->
+        <!-- 6. 品牌理念：FOR THE 0.01% 保持不变 -->
         <div class="quote-box">
             <h2 class="section-main-title">FOR THE 0.01%</h2>
             <p class="quote-text">
@@ -317,7 +319,7 @@
             </p>
         </div>
 
-        <!-- 7. 三大核心优势（三栏卡片） -->
+        <!-- 7. 三大核心优势 保持三列卡片不变 -->
         <h2 class="section-main-title">WHY OUDHIRA</h2>
         <div class="divider"></div>
         <div class="three-col">
@@ -327,7 +329,7 @@
             </div>
             <div class="card-box">
                 <h3 class="card-title">Technological Innovation</h3>
-                <p class="card-text">Adopt world-leading advanced extraction and fusion crafts.</p>
+                <p class="card-text">Adopt world-leading advanced extraction crafts.</p>
             </div>
             <div class="card-box">
                 <h3 class="card-title">Identity Manifestation</h3>
@@ -335,23 +337,16 @@
             </div>
         </div>
 
-        <!-- 8. 未来愿景 -->
-        <div class="row-flex">
+        <!-- 8. 未来愿景板块【已改：删除6条列表，仅保留标题+图片】 -->
+        <h2 class="section-main-title">FUTURE VISION</h2>
+        <div class="divider"></div>
+        <div class="col-stack">
             <div class="col-img">
-                <!-- R2 图片 + 原生懒加载 -->
                 <img src="https://media.oudhira.com/heritage/future-vision.png" alt="Future Vision" loading="lazy">
-            </div>
-            <div class="col-text">
-                <div class="list-item"><i class="fas fa-leaf"></i> Expanding Sustainable Harvesting Initiatives</div>
-                <div class="list-item"><i class="fas fa-users"></i> Developing Global Agarwood Culture Community</div>
-                <div class="list-item"><i class="fas fa-box"></i> Introducing New Agarwood Fusion Product Lines</div>
-                <div class="list-item"><i class="fas fa-map-marker-alt"></i> Establishing OUDHIRA Experience Centers</div>
-                <div class="list-item"><i class="fas fa-flask"></i> Continuous R&D for Extraction Technologies</div>
-                <div class="list-item"><i class="fas fa-book-open"></i> Promoting Agarwood Culture via Education</div>
             </div>
         </div>
 
-        <!-- 9. 品牌落款 -->
+        <!-- 9. 品牌落款 保持不变 -->
         <div style="text-align: center; margin-top: 100px; color: #999;">
             <p class="card-text">Where Ancient Agarwood Meets Modern Alchemy</p>
             <p class="card-text">Oudigen Technology (Shenzhen) Co. Ltd</p>
@@ -363,9 +358,7 @@
         <div class="section-container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <div class="footer-logo">
-                        <img src="public/images/logo.png" alt="OUDHIRA LOGO" class="logo-img">
-                    </div>
+                    <img src="public/images/logo.png" alt="OUDHIRA LOGO" class="logo-img-footer">
                     <p data-i18n="footer_desc">Redefining luxury through the essence of authentic Oud.</p>
                 </div>
                 <div class="footer-links">
