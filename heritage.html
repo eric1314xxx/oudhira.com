@@ -3,68 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heritage | OUDHIRA - Premium Agarwood Vape</title>
+    <title>Brand Story | OUDHIRA</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .heritage { padding-top: 150px; min-height: 80vh; }
-        .heritage-visual { position: relative; }
-        .visual-frame { width: 100%; aspect-ratio: 1; max-width: 500px; position: relative; margin: 0 auto; }
-        .frame-corner { position: absolute; width: 60px; height: 60px; border: 2px solid var(--gold); }
-        .frame-corner.top-right { top: 0; right: 0; border-bottom: none; border-left: none; }
-        .frame-corner.top-left { top: 0; left: 0; border-bottom: none; border-right: none; }
-        .frame-corner.bottom-right { bottom: 0; right: 0; border-top: none; border-left: none; }
-        .frame-corner.bottom-left { bottom: 0; left: 0; border-top: none; border-right: none; }
-        .visual-content { 
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            width: 100%; 
-            height: 100%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            border-radius: 30px; 
-            overflow: hidden;
-            /* 使用内阴影和外发光让视频边缘与黑色背景融合 */
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 10px 40px rgba(0,0,0,0.5);
+        /* 全局沿用网站基础样式 */
+        body {
+            background: #000;
+            color: #fff;
         }
-        .visual-content::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            /* 边缘羽化遮罩，让视频四周自然淡入背景 */
-            background: radial-gradient(circle, transparent 50%, rgba(10, 10, 10, 0.4) 80%, rgba(10, 10, 10, 1) 100%);
-            pointer-events: none;
+        /* 品牌故事页 全局容器 */
+        .heritage-wrap {
+            padding-top: 120px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 80px;
         }
-        .heritage-video { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            opacity: 0.85; /* 降低一点透明度，让底色透出来一点点，更深邃 */
-            filter: brightness(0.9) contrast(1.1);
+        /* 通用区块标题 */
+        .section-main-title {
+            font-size: 2.5rem;
+            color: #e3ccae;
+            text-align: center;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
         }
-        .heritage-stats { display: flex; gap: 40px; margin-top: 40px; }
-        .stat-item { text-align: center; }
-        .stat-number { display: block; font-size: 2.5rem; font-weight: 700; color: var(--gold); font-family: var(--font-display); }
-        .stat-label { font-size: 0.9rem; color: var(--gray); }
+        .section-sub-title {
+            font-size: 1.2rem;
+            color: #ccc;
+            text-align: center;
+            margin-bottom: 50px;
+            line-height: 1.6;
+        }
+        /* 分割线（金色细线条） */
+        .divider {
+            width: 120px;
+            height: 2px;
+            background: #e3ccae;
+            margin: 30px auto;
+        }
+        /* 图文左右布局（电脑端） */
+        .row-flex {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        .row-flex .col-img,
+        .row-flex .col-text {
+            flex: 1;
+        }
+        .row-flex img {
+            width: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        /* 卡片通用样式 */
+        .card-box {
+            background: #111;
+            border: 1px solid rgba(227, 204, 174, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .card-title {
+            color: #e3ccae;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .card-text {
+            color: #ddd;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        /* 高亮数字（重点数据） */
+        .num-highlight {
+            color: #e3ccae;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        /* 三列卡片（优势区块） */
+        .three-col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 80px;
+        }
+        /* 列表样式（价值观/功效） */
+        .list-item {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+            color: #ddd;
+        }
+        .list-item i {
+            color: #e3ccae;
+            margin-right: 12px;
+        }
+        /* 引言名言区块 */
+        .quote-box {
+            text-align: center;
+            padding: 40px 20px;
+            margin: 60px 0;
+            border-left: 3px solid #e3ccae;
+            border-right: 3px solid #e3ccae;
+        }
+        .quote-text {
+            font-size: 1.3rem;
+            color: #e3ccae;
+            font-style: italic;
+            line-height: 1.8;
+        }
+        .quote-author {
+            margin-top: 15px;
+            color: #999;
+        }
+        /* 移动端适配：所有布局改为上下堆叠 */
+        @media (max-width: 768px) {
+            .row-flex {
+                flex-direction: column;
+            }
+            .three-col {
+                grid-template-columns: 1fr;
+            }
+            .section-main-title {
+                font-size: 1.8rem;
+            }
+        }
     </style>
-</head>
-<body>
-    <!-- 强制颜色修复 SVG 滤镜 - 绝对锁定 #e3ccae -->
+
+    <!-- 网站原有SVG颜色滤镜 保留 -->
     <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <defs>
+            <filter id="iphone-gold-filter">
+                <feColorMatrix type="matrix" values="0 0 0 0 0.89  0 0 0 0.80  0 0 0 0 0.68  0 0 0 1 0" />
+            </filter>
             <filter id="iphone-gold-fix">
-                <feColorMatrix type="matrix" values="0 0 0 0 0.89  0 0 0 0 0.80  0 0 0 0 0.68  0 0 0 1 0" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0.89  0 0 0 0.80  0 0 0 0.68  0 0 0 1 0" />
             </filter>
         </defs>
     </svg>
+</head>
+<body>
+    <!-- 预加载动画 保留原有 -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="gold-ring"></div>
+            <div class="brand-text">OUDHIRA</div>
+        </div>
+    </div>
 
-    <!-- Navigation -->
+    <!-- 导航栏 完全保留原有（含Products下拉） -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo">
@@ -81,7 +171,6 @@
                         <div class="nav-dropdown">
                             <a href="product-master.html" class="dropdown-item" data-i18n="tab_master">THE MASTER</a>
                             <a href="product-aura.html" class="dropdown-item" data-i18n="tab_aura">AURA</a>
-                            <!-- 新增 Pandora 产品入口 -->
                             <a href="product-pandora.html" class="dropdown-item" data-i18n="tab_pandora">PANDORA</a>
                         </div>
                     </div>
@@ -106,62 +195,176 @@
                         </div>
                     </div>
                 </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            <button class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </nav>
 
-    <!-- Heritage Section -->
-    <section class="heritage" id="heritage">
-        <div class="section-container">
-            <div class="heritage-content">
-                <div class="section-header">
-                    <span class="section-tag" data-i18n="heritage_tag">Our Heritage</span>
-                    <h2 class="section-title"><span data-i18n="heritage_title_1">The Essence</span> <br><span class="gold" data-i18n="heritage_title_2">of Oud</span></h2>
-                </div>
-                <div class="heritage-text">
-                    <p class="lead" data-i18n="heritage_lead">For thousands of years, Oud has been a symbol of luxury and sophistication in the Middle East</p>
-                    <p data-i18n="heritage_text">We bring you a unique experience that combines the authenticity of traditional Oud with the latest electronic vaporization technology, delivering exceptional aromatic moments with every breath</p>
-                </div>
-                <div class="heritage-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label" data-i18n="stat_natural_oud">Natural Oud</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label" data-i18n="stat_expertise">Years of Expertise</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">50k+</span>
-                        <span class="stat-label" data-i18n="stat_clients">Happy Clients</span>
-                    </div>
-                </div>
+    <!-- ========== 全新品牌故事主体内容（图片全部使用R2域名+懒加载） ========== -->
+    <main class="heritage-wrap">
+        <!-- 1. 头部Banner：品牌标语 + 丝绸之路图 -->
+        <div class="row-flex">
+            <div class="col-text">
+                <h1 class="section-main-title">OUDHIRA</h1>
+                <p class="section-sub-title">Where Ancient Agarwood Meets Modern Alchemy</p>
+                <div class="divider"></div>
+                <p class="card-text">
+                    Agarwood, the precious treasure of the ancient Silk Road, travels across Istanbul, Kashgar, Samarkand,
+                    Damascus, Baghdad, Hetian and Xi’an. We inherit the thousand-year fragrance culture and redefine modern luxury.
+                </p>
             </div>
-            <div class="heritage-visual">
-                <div class="visual-frame">
-                    <div class="visual-content">
-                        <video autoplay muted loop playsinline class="heritage-video" id="heritageVideo">
-                            <source src="public/videos/heritage.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
+            <div class="col-img">
+                <!-- R2 图片 + 原生懒加载 loading="lazy" -->
+                <img src="https://media.oudhira.com/heritage/silk-road.jpg" alt="Silk Road & Agarwood" loading="lazy">
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
+        <!-- 2. 名言引言区块 -->
+        <div class="quote-box">
+            <p class="quote-text">The fragrance of agarwood is the breath of time.</p>
+            <p class="quote-author">—— Jalāl al-Dīn Muḥammad Rūmī</p>
+        </div>
+
+        <!-- 3. 品牌简介：使命 + 价值观 -->
+        <h2 class="section-main-title">ABOUT OUDHIRA</h2>
+        <div class="divider"></div>
+
+        <div class="card-box">
+            <h3 class="card-title">OUR MISSION</h3>
+            <p class="card-text">
+                To redefine the agarwood experience through sustainable innovation and technological excellence,
+                preserving ancient traditions while embracing modern luxury.
+            </p>
+        </div>
+
+        <div class="card-box">
+            <h3 class="card-title">OUR VALUES</h3>
+            <div class="list-item"><i class="fas fa-leaf"></i> Non-destructive Acquisition</div>
+            <div class="list-item"><i class="fas fa-globe-americas"></i> Ecological Conservation</div>
+            <div class="list-item"><i class="fas fa-seedling"></i> Sustainable Harvesting</div>
+            <div class="list-item"><i class="fas fa-book"></i> Cultural Preservation</div>
+            <div class="list-item"><i class="fas fa-microchip"></i> Technological Innovation</div>
+        </div>
+
+        <!-- 4. 沉香天然价值：分子对比 + 六大功效 -->
+        <div class="row-flex">
+            <div class="col-img">
+                <!-- R2 图片 + 原生懒加载 -->
+                <img src="https://media.oudhira.com/heritage/agarwood-material.jpg" alt="Agarwood Natural Value" loading="lazy">
+            </div>
+            <div class="col-text">
+                <h3 class="card-title">Nature's Gold, Engineered for Elegance</h3>
+                <p class="card-text">
+                    Rose: <span class="num-highlight">300</span> extractable odor molecules per gram<br>
+                    Agarwood: <span class="num-highlight">27,000</span> extractable odor molecules per gram
+                </p>
+                <br>
+                <p class="card-text"><strong>Health Benefits of Agarwood:</strong></p>
+                <div class="list-item"><i class="fas fa-heartbeat"></i> Immune System Support</div>
+                <div class="list-item"><i class="fas fa-stomach"></i> Benefit for Digestive System</div>
+                <div class="list-item"><i class="fas fa-moon"></i> Stress Alleviation and Improved Sleep</div>
+                <div class="list-item"><i class="fas fa-shield-alt"></i> Antioxidant and Antimicrobial</div>
+                <div class="list-item"><i class="fas fa-heart"></i> Support Heart Health</div>
+                <div class="list-item"><i class="fas fa-lungs"></i> Beneficial for Respiratory Health</div>
+            </div>
+        </div>
+
+        <!-- 5. 核心技术创新 -->
+        <h2 class="section-main-title">TECHNOLOGY INNOVATION</h2>
+        <div class="divider"></div>
+        <p class="section-sub-title">Engineered for Discretion, Crafted for Distinction</p>
+
+        <div class="row-flex">
+            <div class="col-text">
+                <div class="card-box">
+                    <h3 class="card-title">Agarwood Fusion Technology</h3>
+                    <p class="card-text">
+                        Greatly increases aroma emission efficiency by <span class="num-highlight">50%</span>,
+                        releasing rich and layered fragrance steadily.
+                    </p>
+                </div>
+                <div class="card-box">
+                    <h3 class="card-title">Supercritical CO₂ Extraction</h3>
+                    <p class="card-text">
+                        The retention rate of heat-sensitive active components improved by <span class="num-highlight">67%</span>,
+                        fully preserving the original aroma of agarwood.
+                    </p>
+                </div>
+            </div>
+            <div class="col-img">
+                <!-- R2 图片 + 原生懒加载 -->
+                <img src="https://media.oudhira.com/heritage/tech-extract.jpg" alt="Core Technology" loading="lazy">
+            </div>
+        </div>
+
+        <!-- 6. 品牌理念：FOR THE 0.01% -->
+        <div class="quote-box">
+            <h2 class="section-main-title">FOR THE 0.01%</h2>
+            <p class="quote-text">
+                True luxury doesn't need to be seen, it only needs to be smelled by 0.01% of the population.
+            </p>
+            <p class="quote-author">Your Quiet Statement</p>
+        </div>
+
+        <div class="card-box">
+            <h3 class="card-title">NOT A PRODUCT, A LIFESTYLE</h3>
+            <p class="card-text">
+                A tribute to nature's patience and the ancient cultural heritage of the Silk Road.
+            </p>
+        </div>
+
+        <!-- 7. 三大核心优势（三栏卡片） -->
+        <h2 class="section-main-title">WHY OUDHIRA</h2>
+        <div class="divider"></div>
+        <div class="three-col">
+            <div class="card-box">
+                <h3 class="card-title">Cultural Inheritance</h3>
+                <p class="card-text">Preserving the precious agarwood heritage of the ancient Silk Road.</p>
+            </div>
+            <div class="card-box">
+                <h3 class="card-title">Technological Innovation</h3>
+                <p class="card-text">Adopt world-leading advanced extraction and fusion crafts.</p>
+            </div>
+            <div class="card-box">
+                <h3 class="card-title">Identity Manifestation</h3>
+                <p class="card-text">A low-key luxury choice for people who understand true taste.</p>
+            </div>
+        </div>
+
+        <!-- 8. 未来愿景 -->
+        <div class="row-flex">
+            <div class="col-img">
+                <!-- R2 图片 + 原生懒加载 -->
+                <img src="https://media.oudhira.com/heritage/future-vision.jpg" alt="Future Vision" loading="lazy">
+            </div>
+            <div class="col-text">
+                <div class="list-item"><i class="fas fa-leaf"></i> Expanding Sustainable Harvesting Initiatives</div>
+                <div class="list-item"><i class="fas fa-users"></i> Developing Global Agarwood Culture Community</div>
+                <div class="list-item"><i class="fas fa-box"></i> Introducing New Agarwood Fusion Product Lines</div>
+                <div class="list-item"><i class="fas fa-map-marker-alt"></i> Establishing OUDHIRA Experience Centers</div>
+                <div class="list-item"><i class="fas fa-flask"></i> Continuous R&D for Extraction Technologies</div>
+                <div class="list-item"><i class="fas fa-book-open"></i> Promoting Agarwood Culture via Education</div>
+            </div>
+        </div>
+
+        <!-- 9. 品牌落款 -->
+        <div style="text-align: center; margin-top: 100px; color: #999;">
+            <p class="card-text">Where Ancient Agarwood Meets Modern Alchemy</p>
+            <p class="card-text">Oudigen Technology (Shenzhen) Co. Ltd</p>
+        </div>
+    </main>
+
+    <!-- 页脚 完全保留原有 -->
     <footer class="footer">
         <div class="section-container">
             <div class="footer-top">
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <img src="public/images/logo.png" alt="OUDHIRA LOGO" class="logo-img-footer">
+                        <img src="public/images/logo.png" alt="OUDHIRA LOGO" class="logo-img">
                     </div>
                     <p data-i18n="footer_desc">Redefining luxury through the essence of authentic Oud.</p>
                 </div>
@@ -169,7 +372,8 @@
                     <h4 data-i18n="footer_links_title">Quick Links</h4>
                     <ul>
                         <li><a href="index.html" data-i18n="nav_home">Home</a></li>
-                        <li><a href="heritage.html" data-i18n="nav_heritage">Heritage</a></li>
+                        <li><a href="heritage.html" data-i18n="nav_heritage">Brand Story</a></li>
+                        <li><a href="experience.html" data-i18n="nav_experience">Experience</a></li>
                         <li><a href="products.html" data-i18n="nav_products">Products</a></li>
                         <li><a href="index.html#contact" data-i18n="nav_contact">Contact</a></li>
                     </ul>
@@ -178,7 +382,7 @@
                     <h4 data-i18n="footer_follow_us">Follow Us</h4>
                     <div class="social-icons">
                         <a href="https://www.instagram.com/oudhira_official/" target="_blank" title="Instagram Official"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.instagram.com/oudhira_official_jp/" target="_blank" title="Instagram Japan"><i class="fab fa-instagram"></i> <small style="font-size: 10px; position: absolute; margin-top: 15px; margin-left: -10px;">JP</small></a>
+                        <a href="https://www.instagram.com/oudhira_official_jp/" target="_blank" title="Instagram Japan"><i class="fab fa-instagram"></i></a>
                         <a href="https://www.facebook.com/profile.php?id=61587469697260" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
                         <a href="https://ca.pinterest.com/Oudhira/" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a>
                     </div>
@@ -190,23 +394,14 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
+    <!-- 返回顶部按钮 保留 -->
     <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
         <img src="public/images/Breathing.png" alt="Back to Top">
     </div>
 
+    <!-- 全局JS 保留 -->
     <script src="public/js/main.js"></script>
     <script src="public/js/i18n.js"></script>
     <script src="script.js"></script>
-    <script>
-        // 调整视频播放速度
-        window.addEventListener('load', function() {
-            var video = document.getElementById('heritageVideo');
-            if (video) {
-                // 将速度设置为 0.6 倍速，既能让画面更优雅，也能平滑循环时的卡顿
-                video.playbackRate = 0.6;
-            }
-        });
-    </script>
 </body>
 </html>
