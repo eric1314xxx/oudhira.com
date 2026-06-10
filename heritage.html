@@ -7,21 +7,57 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 全局沿用网站基础样式 */
-        body {
+        /* 全局重置：禁止页面默认滚动，适配全屏PPT布局 */
+        html, body {
+            margin: 0;
+            padding: 0;
             background: #000;
             color: #fff;
+            overflow: hidden;
+            height: 100%;
         }
-        /* 品牌故事页 全局容器 */
-        .heritage-wrap {
-            padding-top: 120px;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
-            padding-bottom: 80px;
+
+        /* 导航栏固定置顶，层级最高，不被页面遮挡 */
+        .logo-img {
+            height: 60px !important;
+            width: auto !important;
+            display: block !important;
+            object-fit: contain !important;
         }
-        /* 通用区块标题 */
+        .navbar {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999 !important;
+            background: #000;
+        }
+
+        /* ========== PPT 全屏滚动容器（核心翻页功能） ========== */
+        .ppt-container {
+            height: 100vh;
+            margin-top: 80px; /* 避开顶部导航栏高度 */
+            overflow-y: scroll;
+            overflow-x: hidden;
+            /* 纵向强制滚动吸附：滚动一次切一整页 */
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth; /* 平滑翻页 */
+        }
+
+        /* 单个PPT页面：全屏高度 + 滚动吸附 + 内容居中 */
+        .ppt-slide {
+            height: 100vh;
+            width: 100%;
+            scroll-snap-align: start; /* 滚动后自动吸附到页面顶部 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 垂直居中 */
+            align-items: center;   /* 水平居中 */
+            padding: 20px 30px;
+            box-sizing: border-box;
+        }
+
+        /* 通用标题样式 */
         .section-main-title {
             font-size: 2.5rem;
             color: #e3ccae;
@@ -33,131 +69,233 @@
             font-size: 1.2rem;
             color: #ccc;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             line-height: 1.6;
         }
-        /* 分割线（金色细线条） */
+
+        /* 金色分割线 */
         .divider {
             width: 120px;
             height: 2px;
             background: #e3ccae;
-            margin: 30px auto;
+            margin: 0 auto 30px;
         }
-        /* 原有左右图文布局（仅保留给技术板块使用） */
-        .row-flex {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            margin-bottom: 80px;
-        }
-        .row-flex .col-img,
-        .row-flex .col-text {
-            flex: 1;
-        }
-        /* 新增：上下图文布局（本次重点使用） */
+
+        /* 上下图文布局 */
         .col-stack {
             display: block;
             text-align: center;
-            margin-bottom: 80px;
         }
         .col-stack .col-text {
             margin-bottom: 30px;
         }
         .col-stack img {
             width: 100%;
-            max-width: 1000px;
             border-radius: 12px;
             object-fit: cover;
             margin: 0 auto;
         }
+
+        /* 单独限制三张内嵌文字图片宽度 */
+        .img-silkroad { max-width: 70% !important; }
+        .img-agar-material { max-width: 50% !important; }
+        .img-future { max-width: 82% !important; }
+
         /* 卡片通用样式 */
         .card-box {
             background: #111;
             border: 1px solid rgba(227, 204, 174, 0.2);
             border-radius: 12px;
             padding: 30px;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
+            max-width: 800px;
+            width: 100%;
         }
         .card-title {
             color: #e3ccae;
             font-size: 1.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            text-align: center !important;
+            width: 100%; /* 新增：标题独占整行，实现强制换行 */
         }
         .card-text {
             color: #ddd;
             line-height: 1.8;
             font-size: 1rem;
+            margin: 0;
+            text-align: center;
         }
-        /* 高亮数字（重点数据） */
+
+        /* 高亮数字 */
         .num-highlight {
             color: #e3ccae;
             font-size: 1.8rem;
             font-weight: bold;
         }
-        /* 三列卡片（优势区块） */
+
+        /* 三大优势 三列卡片 */
         .three-col {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
-            margin-bottom: 80px;
+            max-width: 1000px;
+            width: 100%;
         }
-        /* 列表样式（价值观/技术板块使用） */
+
+        /* 技术区布局：图片居中 + 下方双卡片并排 */
+        .tech-img {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .tech-img img {
+            max-width: 85%;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        /* 加大技术卡片间距 */
+        .tech-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* ========== 价值观列表 恢复 3+2 横向分组布局 ========== */
         .list-item {
             display: flex;
             align-items: center;
-            margin: 12px 0;
+            padding: 18px 12px;
+            margin: 0;
             color: #ddd;
+            position: relative;
+            padding-left: 30px;
+            width: 280px;
+        }
+        /* 左侧渐变金色竖线 */
+        .list-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 60%;
+            background: linear-gradient(to bottom, #e3ccae, rgba(227,204,174,0.1));
+            border-radius: 2px;
         }
         .list-item i {
             color: #e3ccae;
-            margin-right: 12px;
+            font-size: 1.25rem;
+            margin-right: 16px;
         }
-        /* 引言名言区块 */
+
+        /* 电脑端：恢复 3+2 居中横向分组（核心布局） */
+        @media (min-width: 768px) {
+            .card-box:has(.list-item) {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 16px 36px;
+            }
+        }
+        /* 移动端列表强制单列 */
+        @media (max-width: 767px) {
+            .list-item {
+                width: 100%;
+                margin: 8px 0;
+            }
+            .tech-two-col {
+                gap: 20px;
+            }
+        }
+
+        /* 名言区块 */
         .quote-box {
             text-align: center;
             padding: 40px 20px;
-            margin: 60px 0;
             border-left: 3px solid #e3ccae;
             border-right: 3px solid #e3ccae;
+            max-width: 800px;
+            margin: 60px 0; /* 关键修改: 确保底部有足够的外边距 */
         }
         .quote-text {
             font-size: 1.3rem;
             color: #e3ccae;
             font-style: italic;
             line-height: 1.8;
+            margin: 0;
         }
         .quote-author {
             margin-top: 15px;
             color: #999;
         }
-        /* 移动端适配 */
+
+        /* Contact Us 专用样式 */
+        .contact-card {
+            background: #111;
+            border: 1px solid rgba(227, 204, 174, 0.2);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 12px 0;
+            color: #ddd;
+            font-size: 1.1rem;
+        }
+        .contact-item i {
+            color: #e3ccae;
+            font-size: 1.3rem;
+        }
+
+        /* ========== Health Benefits：紧贴图片 + 弱化样式（保留） ========== */
+        .desc-text {
+            color: #999;
+            font-size: 0.95rem;
+            margin-top: 4px;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        /* 移动端全局适配 */
         @media (max-width: 768px) {
-            .row-flex {
-                flex-direction: column;
-            }
-            .three-col {
-                grid-template-columns: 1fr;
+            .ppt-container {
+                margin-top: 70px;
             }
             .section-main-title {
                 font-size: 1.8rem;
             }
+            .three-col, .tech-two-col {
+                grid-template-columns: 1fr;
+            }
+            .img-silkroad, .img-agar-material, .img-future, .tech-img img {
+                max-width: 95% !important;
+            }
+            .ppt-slide {
+                padding: 15px;
+            }
+            .contact-card {
+                padding: 25px;
+            }
         }
     </style>
 
-    <!-- 网站原有SVG颜色滤镜 保留 -->
     <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <filter id="iphone-gold-filter">
-                <feColorMatrix type="matrix" values="0 0 0 0 0.89  0 0 0 0.80  0 0 0 0 0.68  0 0 0 1 0" />
-            </filter>
-            <filter id="iphone-gold-fix">
-                <feColorMatrix type="matrix" values="0 0 0 0 0.89  0 0 0 0.80  0 0 0 0.68  0 0 0 1 0" />
+                <feColorMatrix type="matrix" values="0 0 0 0.89  0 0 0 0.80  0 0 0 0.68  0 0 0 1 0" />
             </filter>
         </defs>
     </svg>
 </head>
 <body>
-    <!-- 预加载动画 保留原有 -->
     <div class="preloader" id="preloader">
         <div class="preloader-content">
             <div class="gold-ring"></div>
@@ -165,7 +303,6 @@
         </div>
     </div>
 
-    <!-- 导航栏 完全保留原有 -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo">
@@ -180,13 +317,13 @@
                     <div class="nav-link-wrapper">
                         <a href="products.html" class="nav-link" data-i18n="nav_products">Products <i class="fas fa-chevron-down"></i></a>
                         <div class="nav-dropdown">
-                            <a href="product-master.html" class="dropdown-item" data-i18n="tab_master">THE MASTER</a>
-                            <a href="product-aura.html" class="dropdown-item" data-i18n="tab_aura">AURA</a>
-                            <a href="product-pandora.html" class="dropdown-item" data-i18n="tab_pandora">PANDORA</a>
+                            <a href="product-master.html" class="dropdown-item">THE MASTER</a>
+                            <a href="product-aura.html" class="dropdown-item">AURA</a>
+                            <a href="product-pandora.html" class="dropdown-item">PANDORA</a>
                         </div>
                     </div>
-                    <a href="experience.html" class="nav-link" data-i18n="nav_experience">Experience</a>
-                    <a href="index.html#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
+                    <a href="experience.html" class="nav-link">Experience</a>
+                    <a href="index.html#contact" class="nav-link">Contact</a>
                 </div>
                 <div class="nav-actions">
                     <a href="#" class="nav-icon"><i class="far fa-user"></i></a>
@@ -200,9 +337,9 @@
                             <i class="fas fa-globe"></i>
                         </button>
                         <div class="lang-menu">
-                            <a href="#" class="active" onclick="changeLanguage('en')">English</a>
-                            <a href="#" onclick="changeLanguage('ar')">العربية (Arabic)</a>
-                            <a href="#" onclick="changeLanguage('ja')">日本語 (Japanese)</a>
+                            <a href="#" onclick="changeLanguage('en')">English</a>
+                            <a href="#" onclick="changeLanguage('ar')">العربية</a>
+                            <a href="#" onclick="changeLanguage('ja')">日本語</a>
                         </div>
                     </div>
                 </div>
@@ -215,74 +352,89 @@
         </div>
     </nav>
 
-    <!-- ========== 主体内容（已按要求修改布局&文案） ========== -->
-    <main class="heritage-wrap">
-        <!-- 1. 丝绸之路板块【已改：上下布局 文字在上+图片在下】 -->
-        <div class="col-stack">
-            <div class="col-text">
-                <h1 class="section-main-title">OUDHIRA</h1>
-                <p class="section-sub-title">Where Ancient Agarwood Meets Modern Alchemy</p>
-                <div class="divider"></div>
+    <!-- ========== PPT 全屏滚动主容器 ========== -->
+    <div class="ppt-container">
+        <!-- 第1页：品牌主视觉 + 丝绸之路 -->
+        <section class="ppt-slide">
+            <div class="col-stack">
+                <div class="col-text">
+                    <h1 class="section-main-title">OUDHIRA</h1>
+                    <p class="section-sub-title">Where Ancient Agarwood Meets Modern Alchemy</p>
+                    <div class="divider"></div>
+                    <p class="card-text">
+                        Agarwood, the precious treasure of the ancient Silk Road, travels across Istanbul, Kashgar, Samarkand,
+                        Damascus, Baghdad, Hetian and Xi’an. We inherit the thousand-year fragrance culture and redefine modern luxury.
+                    </p>
+                </div>
+                <div class="col-img">
+                    <img class="img-silkroad" src="https://media.oudhira.com/heritage/silkroad.png" alt="Silk Road & Agarwood">
+                </div>
+            </div>
+        </section>
+
+        <!-- 第2页：名言金句 -->
+        <section class="ppt-slide">
+            <div class="quote-box">
+                <p class="quote-text">The fragrance of agarwood is the breath of time.</p>
+                <p class="quote-author">—— Jalāl al-Dīn Muḥammad Rūmī</p>
+            </div>
+        </section>
+
+        <!-- 第3页【合并页】：ABOUT OUDHIRA + 使命 + 价值观 -->
+        <section class="ppt-slide">
+            <h2 class="section-main-title">ABOUT OUDHIRA</h2>
+            <div class="divider"></div>
+
+            <!-- 品牌使命 -->
+            <div class="card-box">
+                <h3 class="card-title">OUR MISSION</h3>
                 <p class="card-text">
-                    Agarwood, the precious treasure of the ancient Silk Road, travels across Istanbul, Kashgar, Samarkand,
-                    Damascus, Baghdad, Hetian and Xi’an. We inherit the thousand-year fragrance culture and redefine modern luxury.
+                    To redefine the agarwood experience through sustainable innovation and technological excellence,
+                    preserving ancient traditions while embracing modern luxury.
                 </p>
             </div>
-            <div class="col-img">
-                <img src="https://media.oudhira.com/heritage/silkroad.png" alt="Silk Road & Agarwood" loading="lazy">
+
+            <!-- 使命与价值观之间留白分区 -->
+            <div style="height: 40px;"></div>
+
+            <!-- 品牌价值观：标题居中 + 列表3+2横向分组 -->
+            <div class="card-box">
+                <h3 class="card-title">OUR VALUES</h3>
+                <div class="list-item"><i class="fas fa-leaf"></i> Non-destructive Acquisition</div>
+                <div class="list-item"><i class="fas fa-globe-americas"></i> Ecological Conservation</div>
+                <div class="list-item"><i class="fas fa-seedling"></i> Sustainable Harvesting</div>
+                <div class="list-item"><i class="fas fa-book"></i> Cultural Preservation</div>
+                <div class="list-item"><i class="fas fa-microchip"></i> Technological Innovation</div>
             </div>
-        </div>
+        </section>
 
-        <!-- 2. 名言引言区块 保持不变 -->
-        <div class="quote-box">
-            <p class="quote-text">The fragrance of agarwood is the breath of time.</p>
-            <p class="quote-author">—— Jalāl al-Dīn Muḥammad Rūmī</p>
-        </div>
-
-        <!-- 3. 品牌简介：使命 + 价值观 保持不变 -->
-        <h2 class="section-main-title">ABOUT OUDHIRA</h2>
-        <div class="divider"></div>
-
-        <div class="card-box">
-            <h3 class="card-title">OUR MISSION</h3>
-            <p class="card-text">
-                To redefine the agarwood experience through sustainable innovation and technological excellence,
-                preserving ancient traditions while embracing modern luxury.
-            </p>
-        </div>
-
-        <div class="card-box">
-            <h3 class="card-title">OUR VALUES</h3>
-            <div class="list-item"><i class="fas fa-leaf"></i> Non-destructive Acquisition</div>
-            <div class="list-item"><i class="fas fa-globe-americas"></i> Ecological Conservation</div>
-            <div class="list-item"><i class="fas fa-seedling"></i> Sustainable Harvesting</div>
-            <div class="list-item"><i class="fas fa-book"></i> Cultural Preservation</div>
-            <div class="list-item"><i class="fas fa-microchip"></i> Technological Innovation</div>
-        </div>
-
-        <!-- 4. 沉香价值板块【已改：上下布局 + 删除6项功效，仅保留标题】 -->
-        <div class="col-stack">
-            <div class="col-text">
-                <h3 class="card-title">Nature's Gold, Engineered for Elegance</h3>
-                <p class="card-text">
-                    Rose: <span class="num-highlight">300</span> extractable odor molecules per gram<br>
-                    Agarwood: <span class="num-highlight">27,000</span> extractable odor molecules per gram
-                </p>
-                <!-- 仅保留标题，下方6条功效已全部删除 -->
-                <p class="card-text" style="margin-top:20px;"><strong>Health Benefits of Agarwood:</strong></p>
+        <!-- 第4页：沉香天然价值（文字紧贴图片、弱化显示） -->
+        <section class="ppt-slide">
+            <div class="col-stack">
+                <div class="col-text">
+                    <h3 class="card-title">Nature's Gold, Engineered for Elegance</h3>
+                    <p class="card-text">
+                        Rose: <span class="num-highlight">300</span> extractable odor molecules per gram<br>
+                        Agarwood: <span class="num-highlight">27,000</span> extractable odor molecules per gram
+                    </p>
+                </div>
+                <div class="col-img">
+                    <img class="img-agar-material" src="https://media.oudhira.com/heritage/agarwood-material.png" alt="Agarwood Natural Value">
+                </div>
+                <p class="desc-text">Health Benefits of Agarwood</p>
             </div>
-            <div class="col-img">
-                <img src="https://media.oudhira.com/heritage/agarwood-material.png" alt="Agarwood Natural Value" loading="lazy">
+        </section>
+
+        <!-- 第5页：技术创新 -->
+        <section class="ppt-slide">
+            <h2 class="section-main-title">TECHNOLOGY INNOVATION</h2>
+            <div class="divider"></div>
+            <p class="section-sub-title">Engineered for Discretion, Crafted for Distinction</p>
+
+            <div class="tech-img">
+                <img src="https://media.oudhira.com/heritage/tech-extract.png" alt="Core Technology">
             </div>
-        </div>
-
-        <!-- 5. 核心技术创新 保持原有左右布局不变 -->
-        <h2 class="section-main-title">TECHNOLOGY INNOVATION</h2>
-        <div class="divider"></div>
-        <p class="section-sub-title">Engineered for Discretion, Crafted for Distinction</p>
-
-        <div class="row-flex">
-            <div class="col-text">
+            <div class="tech-two-col">
                 <div class="card-box">
                     <h3 class="card-title">Agarwood Fusion Technology</h3>
                     <p class="card-text">
@@ -298,101 +450,103 @@
                     </p>
                 </div>
             </div>
-            <div class="col-img">
-                <img src="https://media.oudhira.com/heritage/tech-extract.png" alt="Core Technology" loading="lazy">
-            </div>
-        </div>
+        </section>
 
-        <!-- 6. 品牌理念：FOR THE 0.01% 保持不变 -->
-        <div class="quote-box">
-            <h2 class="section-main-title">FOR THE 0.01%</h2>
-            <p class="quote-text">
-                True luxury doesn't need to be seen, it only needs to be smelled by 0.01% of the population.
-            </p>
-            <p class="quote-author">Your Quiet Statement</p>
-        </div>
-
-        <div class="card-box">
-            <h3 class="card-title">NOT A PRODUCT, A LIFESTYLE</h3>
-            <p class="card-text">
-                A tribute to nature's patience and the ancient cultural heritage of the Silk Road.
-            </p>
-        </div>
-
-        <!-- 7. 三大核心优势 保持三列卡片不变 -->
-        <h2 class="section-main-title">WHY OUDHIRA</h2>
-        <div class="divider"></div>
-        <div class="three-col">
-            <div class="card-box">
-                <h3 class="card-title">Cultural Inheritance</h3>
-                <p class="card-text">Preserving the precious agarwood heritage of the ancient Silk Road.</p>
+        <!-- 第6页：品牌理念 -->
+        <section class="ppt-slide">
+            <div class="quote-box">
+                <h2 class="section-main-title">FOR THE 0.01%</h2>
+                <p class="quote-text">
+                    True luxury doesn't need to be seen, it only needs to be smelled by 0.01% of the population.
+                </p>
+                <p class="quote-author">Your Quiet Statement</p>
             </div>
             <div class="card-box">
-                <h3 class="card-title">Technological Innovation</h3>
-                <p class="card-text">Adopt world-leading advanced extraction crafts.</p>
+                <h3 class="card-title">NOT A PRODUCT, A LIFESTYLE</h3>
+                <p class="card-text">
+                    A tribute to nature's patience and the ancient cultural heritage of the Silk Road.
+                </p>
             </div>
-            <div class="card-box">
-                <h3 class="card-title">Identity Manifestation</h3>
-                <p class="card-text">A low-key luxury choice for people who understand true taste.</p>
+        </section>
+
+        <!-- 第7页：核心优势 -->
+        <section class="ppt-slide">
+            <h2 class="section-main-title">WHY OUDHIRA</h2>
+            <div class="divider"></div>
+            <div class="three-col">
+                <div class="card-box">
+                    <h3 class="card-title">Cultural<br>Inheritance</h3>
+                    <p class="card-text">Preserving the precious agarwood heritage of the ancient Silk Road.</p>
+                </div>
+                <div class="card-box">
+                    <h3 class="card-title">Technological Innovation</h3>
+                    <p class="card-text">Adopt world-leading advanced extraction crafts.</p>
+                </div>
+                <div class="card-box">
+                    <h3 class="card-title">Identity Manifestation</h3>
+                    <p class="card-text">A low-key luxury choice for people who understand true taste.</p>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- 8. 未来愿景板块【已改：删除6条列表，仅保留标题+图片】 -->
-        <h2 class="section-main-title">FUTURE VISION</h2>
-        <div class="divider"></div>
-        <div class="col-stack">
-            <div class="col-img">
-                <img src="https://media.oudhira.com/heritage/future-vision.png" alt="Future Vision" loading="lazy">
+        <!-- 第8页：未来愿景 -->
+        <section class="ppt-slide">
+            <h2 class="section-main-title">FUTURE VISION</h2>
+            <div class="divider"></div>
+            <div class="col-stack">
+                <div class="col-img">
+                    <img class="img-future" src="https://media.oudhira.com/heritage/future-vision.png" alt="Future Vision">
+                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- 9. 品牌落款 保持不变 -->
-        <div style="text-align: center; margin-top: 100px; color: #999;">
-            <p class="card-text">Where Ancient Agarwood Meets Modern Alchemy</p>
-            <p class="card-text">Oudigen Technology (Shenzhen) Co. Ltd</p>
-        </div>
-    </main>
+        <!-- 第9页：尾页 Contact Us -->
+        <section class="ppt-slide">
+            <h2 class="section-main-title">CONTACT US</h2>
+            <div class="divider"></div>
+            <div class="contact-card">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Shenzhen, China</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@oudhira.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>www.oudhira.com</span>
+                </div>
+                <p style="margin-top:30px; color:#999;">Oudigen Technology (Shenzhen) Co. Ltd</p>
+                <p style="color:#e3ccae; margin-top:10px;">Where Ancient Agarwood Meets Modern Alchemy</p>
+            </div>
+        </section>
+    </div>
 
-    <!-- 页脚 完全保留原有 -->
     <footer class="footer">
         <div class="section-container">
             <div class="footer-top">
                 <div class="footer-brand">
                     <img src="public/images/logo.png" alt="OUDHIRA LOGO" class="logo-img-footer">
-                    <p data-i18n="footer_desc">Redefining luxury through the essence of authentic Oud.</p>
+                    <p>Redefining luxury through the essence of authentic Oud.</p>
                 </div>
                 <div class="footer-links">
-                    <h4 data-i18n="footer_links_title">Quick Links</h4>
+                    <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
-                        <li><a href="heritage.html" data-i18n="nav_heritage">Brand Story</a></li>
-                        <li><a href="experience.html" data-i18n="nav_experience">Experience</a></li>
-                        <li><a href="products.html" data-i18n="nav_products">Products</a></li>
-                        <li><a href="index.html#contact" data-i18n="nav_contact">Contact</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="heritage.html">Brand Story</a></li>
+                        <li><a href="experience.html">Experience</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
                     </ul>
-                </div>
-                <div class="footer-social">
-                    <h4 data-i18n="footer_follow_us">Follow Us</h4>
-                    <div class="social-icons">
-                        <a href="https://www.instagram.com/oudhira_official/" target="_blank" title="Instagram Official"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.instagram.com/oudhira_official_jp/" target="_blank" title="Instagram Japan"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/profile.php?id=61587469697260" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="https://ca.pinterest.com/Oudhira/" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a>
-                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p data-i18n="footer_rights">&copy; 2026 OUDHIRA. All rights reserved.</p>
+                <p>&copy; 2026 OUDHIRA. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- 返回顶部按钮 保留 -->
-    <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
-        <img src="public/images/Breathing.png" alt="Back to Top">
-    </div>
-
-    <!-- 全局JS 保留 -->
     <script src="public/js/main.js"></script>
     <script src="public/js/i18n.js"></script>
     <script src="script.js"></script>
